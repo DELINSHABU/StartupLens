@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StartupLens - Startup Profiles</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "on-secondary": "#263143",
+                "inverse-primary": "#0053da",
+                "secondary-fixed": "#d8e3fb",
+                "surface-container": "#191f31",
+                "secondary": "#bcc7de",
+                "on-secondary-fixed": "#111c2d",
+                "error-container": "#93000a",
+                "secondary-container": "#3e495d",
+                "surface-container-highest": "#2e3447",
+                "tertiary": "#7bd0ff",
+                "primary-fixed": "#dbe1ff",
+                "tertiary-fixed": "#c4e7ff",
+                "background": "#0c1324",
+                "on-tertiary-container": "#ebf6ff",
+                "surface": "#0c1324",
+                "inverse-surface": "#dce1fb",
+                "surface-container-lowest": "#070d1f",
+                "inverse-on-surface": "#2a3043",
+                "on-surface-variant": "#c2c6d9",
+                "outline": "#8c90a2",
+                "on-primary-container": "#f3f3ff",
+                "on-background": "#dce1fb",
+                "on-tertiary-fixed": "#001e2c",
+                "on-secondary-fixed-variant": "#3c475a",
+                "primary-container": "#0062ff",
+                "primary": "#b4c5ff",
+                "on-primary-fixed": "#00174b",
+                "on-secondary-container": "#aeb9d0",
+                "surface-container-high": "#23293c",
+                "primary-fixed-dim": "#b4c5ff",
+                "on-surface": "#dce1fb",
+                "on-error-container": "#ffdad6",
+                "outline-variant": "#424656",
+                "tertiary-fixed-dim": "#7bd0ff",
+                "on-primary": "#002a78",
+                "surface-bright": "#33394c",
+                "surface-container-low": "#151b2d",
+                "error": "#ffb4ab",
+                "on-error": "#690005",
+                "surface-tint": "#b4c5ff",
+                "secondary-fixed-dim": "#bcc7de",
+                "tertiary-container": "#0078a2",
+                "surface-dim": "#0c1324",
+                "on-tertiary": "#00354a",
+                "surface-variant": "#2e3447",
+                "on-tertiary-fixed-variant": "#004c69",
+                "on-primary-fixed-variant": "#003ea8"
+              },
+              fontFamily: {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(46, 52, 71, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(66, 70, 86, 0.15);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #0062ff 0%, #b4c5ff 100%);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #151b2d; }
+        ::-webkit-scrollbar-thumb { background: #2e3447; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<aside class="w-64 flex-shrink-0 flex flex-col bg-surface-container-lowest border-r border-outline-variant/10 z-20">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 primary-gradient rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div>
+<h1 class="font-headline font-bold text-on-surface leading-tight">StartupLens</h1>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold">AI Ecosystem</p>
+</div>
+</div>
+<nav class="mt-6 px-4 space-y-1 flex-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-container text-on-primary-container group shadow-lg shadow-primary-container/20" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<span class="text-sm font-semibold">Startups</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary">payments</span>
+<span class="text-sm font-medium">Investors</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary">psychology</span>
+<span class="text-sm font-medium">AI Evaluator</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary">hub</span>
+<span class="text-sm font-medium">AI Match</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary">event</span>
+<span class="text-sm font-medium">Events</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/10">
+<p class="text-xs text-on-surface-variant mb-2">Credits Remaining</p>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mb-2">
+<div class="bg-tertiary h-1.5 rounded-full" style="width: 75%"></div>
+</div>
+<p class="text-[10px] text-tertiary font-bold uppercase tracking-wider">75 / 100 Analysis</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface">
+<!-- TopNavBar (Shared Component) -->
+<header class="h-16 flex items-center justify-between px-8 bg-surface/50 backdrop-blur-md border-b border-outline-variant/10 z-10">
+<div class="flex-1 max-w-xl">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg pl-10 pr-4 py-2 text-sm text-on-surface focus:ring-1 focus:ring-primary transition-all" placeholder="Search startups, founders, or industries..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-8">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/20 mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-on-surface">Alex Rivera</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Venture Partner</p>
+</div>
+<img class="w-9 h-9 rounded-full object-cover border border-outline-variant/30" data-alt="User Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyQStiNnHglE8V5NpQbIOZEeyIc9y9jUw2TSxceXfT0ILhaQVUOHmMI5clQtRHY3oDVsV6eI6UgreWB9zPV0-H7Q_Qf2qHTKOQncOQY8ufCKOxLyle8xe-FSfihpRWQUA9OPXMB2tl8jZE1XJeh8MdeXZA2SXx5QXbtEyE0syVZsG6qEoQkc5Thvdt9YNL6iK9zDddMcoXFE92auUrVatTTSbTRnIHARMy_CSF8MWs2zTHUOWr3qVwgK_d3_03USS-C22liIQqDHg"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 overflow-y-auto p-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<h2 class="text-4xl font-headline font-bold text-on-surface tracking-tight mb-2">Startup Ecosystem</h2>
+<p class="text-on-surface-variant max-w-lg">Discover and manage the next generation of high-growth ventures within the StartupLens network.</p>
+</div>
+<button class="primary-gradient text-on-primary-fixed font-bold py-3 px-6 rounded-lg flex items-center gap-2 shadow-lg shadow-primary-container/30 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">add</span>
+                    Add Startup
+                </button>
+</div>
+<!-- Filters Area -->
+<div class="flex flex-wrap items-center gap-4 mb-8">
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/10">
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Industry:</span>
+<select class="bg-transparent border-none text-sm text-on-surface focus:ring-0 p-0 cursor-pointer font-medium">
+<option>All Sectors</option>
+<option>FinTech</option>
+<option>HealthTech</option>
+<option>SaaS</option>
+<option>AI/ML</option>
+<option>CleanTech</option>
+</select>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/10">
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Stage:</span>
+<select class="bg-transparent border-none text-sm text-on-surface focus:ring-0 p-0 cursor-pointer font-medium">
+<option>All Stages</option>
+<option>Pre-seed</option>
+<option>Seed</option>
+<option>Series A</option>
+<option>Series B+</option>
+</select>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant/20 mx-2"></div>
+<button class="text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                    More Filters
+                </button>
+<div class="ml-auto flex items-center gap-2 bg-surface-container-lowest p-1 rounded-lg border border-outline-variant/10">
+<button class="p-1.5 rounded bg-surface-container-highest text-primary shadow-sm">
+<span class="material-symbols-outlined text-lg">grid_view</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+</button>
+</div>
+</div>
+<!-- Startups Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden hover:bg-surface-container transition-all group border border-outline-variant/5">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center border border-outline-variant/10">
+<span class="material-symbols-outlined text-tertiary text-2xl">account_balance</span>
+</div>
+<span class="px-2 py-1 bg-tertiary-container/20 text-tertiary text-[10px] font-bold uppercase tracking-wider rounded border border-tertiary/20 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+                                AI Recommended
+                            </span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Nexus Ledger</h3>
+<p class="text-sm text-primary font-medium mb-4">FinTech • Series A</p>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed mb-6">Next-generation distributed ledger technology for institutional asset settlement and real-time reconciliation.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/10">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Founder Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuFfoiWB-plzMAY5LkPxKSPKiH2frQW4laxAavGhEinUujFz1w3rwqLKYLxDbrRvLwIlye09wbYmjMRL6jIaU6r17BjRjMiM5WFmF-sFJd0Y4unimcskO7xLtPrxLwLLNVtanQ8o5suNgBoFgZJ5W80oFaQhFjjCjaTX4eRmCKEQfzPN3Qxyra8WLdaOYHVdWfNdxbc7yfp7Y5ktgEBtZUoBLAqQmjlBpowQbKvOZcui9cMDlN7mLnI-4TQVZsdGh6YM6eBWHDCbI"/>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">Marcus Chen</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Founder &amp; CEO</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">north_east</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden hover:bg-surface-container transition-all group border border-outline-variant/5">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center border border-outline-variant/10">
+<span class="material-symbols-outlined text-secondary text-2xl">health_metrics</span>
+</div>
+<span class="px-2 py-1 bg-secondary-container/20 text-secondary text-[10px] font-bold uppercase tracking-wider rounded border border-secondary/20">
+                                Seed Round
+                            </span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">VitalStream</h3>
+<p class="text-sm text-primary font-medium mb-4">HealthTech • Seed</p>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed mb-6">AI-powered continuous patient monitoring system that predicts critical events before they occur.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/10">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Founder Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4jljp4-HrNs62MGjeczL88fiU0qXygbofKNrQn89gSgqkoSVvpoI60tVdwFv9C9siwvd1Vl9FAY9XimsqJOps7xwuJEPscRk2tr9u4Lho-IYxLVwoClyKp3k9_BX3_hGF_RAeaPf_KMVSJJd5WimXdquo-qD8_Gp6QBz68BLRICLRZmVjf7QnXHN8jXCpN6OHedY8czit5uCxR6AG7EODXrjDfGMtZJuEqkSo7NTDud6-l_1TUj8iUTem00-t7XzlxWGA2ipVI0w"/>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">Dr. Sarah Vance</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Co-Founder</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">north_east</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden hover:bg-surface-container transition-all group border border-outline-variant/5">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center border border-outline-variant/10">
+<span class="material-symbols-outlined text-error text-2xl">electric_car</span>
+</div>
+<span class="px-2 py-1 bg-error-container/10 text-error text-[10px] font-bold uppercase tracking-wider rounded border border-error/20">
+                                High Growth
+                            </span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Voltify</h3>
+<p class="text-sm text-primary font-medium mb-4">CleanTech • Series B</p>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed mb-6">Modular battery swapping infrastructure for urban electric mobility and commercial fleets.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/10">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Founder Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYoG2yuUEgxwG08cSiKy6ubRBUlQfTHUTAdMCAUxUA76phJaDxI5QDs6W_Sy-skshe5VGoo9jYOC8flT7dMSZLwlnacG0ni8rdqZJFlPp_Evokx4CmDNPfskX_ma--Xw_Y9eZVdmo-b4TF4DSFd4XfbKbcLxd6s77D1KhCStbxxq5zhF9WopZqrsmi5r0CG53OANfLsAb7ZXysWcaG5IOpbTaSeshnhu3BsYyiIy6pa54RSmtT9z3Gij8ccXnRSoTLi4yxLvQ99Pk"/>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">James Aris</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Founder</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">north_east</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden hover:bg-surface-container transition-all group border border-outline-variant/5">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary text-2xl">security</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">CypherKey</h3>
+<p class="text-sm text-primary font-medium mb-4">SaaS • Pre-seed</p>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed mb-6">Zero-trust authentication framework specifically designed for ephemeral cloud workloads.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/10">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Founder Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEbT7Xwj5FZOI4GDmPFJsdA0kANaSXOvsS7FocW5EEqeTSzPw602gLfaPRniibV0-f8Jl_d4h_Q9kO22GDtvN8x4OT2eFpxy0NlfCUANq8RujFx6VUt-F68UvF4EupTQpCnnIrlG97yrmY5J8ykvvG-wOlFNdT8OTvJmHj3gnn2otB00FlQBCO5kYwtfgRL4Uju7faeArRt0nGAzGa5iK9TL3PkXv6fhe0hwnfY02nYAmYaP3zTg0RogTN9DJq0VPYF6N7zUclpUE"/>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">Elena Kozlova</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Founder &amp; CTO</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">north_east</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden hover:bg-surface-container transition-all group border border-outline-variant/5">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center border border-outline-variant/10">
+<span class="material-symbols-outlined text-tertiary text-2xl">science</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Genosight</h3>
+<p class="text-sm text-primary font-medium mb-4">BioTech • Series A</p>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed mb-6">Accelerating drug discovery through high-fidelity synthetic biological data sets and generative modeling.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/10">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Founder Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV0fpYYQecLiDXETH_bqqnLUJogRyDp9asqxkGOrgc3jyw9F9Ku12MWUVyfgkqoAPbmSrCXLngd3Pd0HuvDdu0DfGQPWP0FRqa-FqnnxFpxPPT6Y_0tk-9RyeAZOzE407Ntgs41lmP4J5dDdVXNwWApFtU2PHWYBWU_50oZbFuus8MnLtuUg70MWInvafAZvX6ZQkqMGYYMUAaiO23jR82BEVSZ_fQRhX5KdGbkeX3AZZDn9Bbm5uhcEaLA3OLFJM8L3iqSSurDAo"/>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">David Miller</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">CEO</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">north_east</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden hover:bg-surface-container transition-all group border border-outline-variant/5">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center border border-outline-variant/10">
+<span class="material-symbols-outlined text-secondary text-2xl">shopping_cart</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">CartLogic</h3>
+<p class="text-sm text-primary font-medium mb-4">Retail • Seed</p>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed mb-6">Omnichannel inventory optimization using hyper-local demand forecasting for SME retailers.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/10">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Founder Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHxqWh2krgpGl7XAwfOibjthJx7_1uC7LJqIje1RmOsVkvNu4f7kxR4doPrYNmrvRsGiNVRrLPaqsVq0NbeXOhbcKF2ZOeCRTLk0sDsMztR3ZkcHTYLWBGw50EVEA-Mi953crn0RfpO1nPl2GIr76QWLvtvSoTU5ZR8oYjBB09PDXhJgb4eHwS5TW_Mi6hYoKZMD8TOY326dfoygtzcQCBQzm3m9zjQRNDGC4HvEAzp2eFSXWUVTAb38pomoCuTCa-XYgGLnHiFrE"/>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">Sofia Patel</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Founding Team</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">north_east</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay (Add Startup Dialog) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
+<div class="glass-panel w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-outline-variant/20">
+<div class="px-8 py-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-high/50">
+<div>
+<h3 class="text-xl font-bold text-on-surface">Add New Startup</h3>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">Ecosystem Expansion</p>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<div class="p-8 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-primary ml-1">Startup Name</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg px-4 py-3 text-sm text-on-surface focus:ring-1 focus:ring-primary placeholder:text-outline/50 transition-all" placeholder="e.g. Acme AI" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-primary ml-1">Founder Name</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg px-4 py-3 text-sm text-on-surface focus:ring-1 focus:ring-primary placeholder:text-outline/50 transition-all" placeholder="e.g. Jane Doe" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-primary ml-1">Industry</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg px-4 py-3 text-sm text-on-surface focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer">
+<option>Select Industry</option>
+<option>FinTech</option>
+<option>HealthTech</option>
+<option>SaaS</option>
+<option>AI/ML</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-primary ml-1">Funding Stage</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg px-4 py-3 text-sm text-on-surface focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer">
+<option>Select Stage</option>
+<option>Pre-seed</option>
+<option>Seed</option>
+<option>Series A</option>
+<option>Series B+</option>
+</select>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-primary ml-1">Short Pitch</label>
+<textarea class="w-full bg-surface-container-lowest border-none rounded-lg px-4 py-3 text-sm text-on-surface focus:ring-1 focus:ring-primary placeholder:text-outline/50 transition-all resize-none" placeholder="Tell us what makes this startup unique..." rows="3"></textarea>
+</div>
+<div class="pt-4 flex items-center justify-end gap-4">
+<button class="px-6 py-2.5 rounded-lg text-sm font-bold text-on-surface hover:bg-surface-container-highest transition-colors">
+                        Cancel
+                    </button>
+<button class="primary-gradient px-8 py-2.5 rounded-lg text-sm font-bold text-on-primary-fixed shadow-lg shadow-primary-container/30 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        Register Startup
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

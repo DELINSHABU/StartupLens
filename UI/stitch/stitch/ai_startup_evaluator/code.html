@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StartupLens - AI Startup Evaluator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#263143",
+                        "inverse-primary": "#0053da",
+                        "secondary-fixed": "#d8e3fb",
+                        "surface-container": "#191f31",
+                        "secondary": "#bcc7de",
+                        "on-secondary-fixed": "#111c2d",
+                        "error-container": "#93000a",
+                        "secondary-container": "#3e495d",
+                        "surface-container-highest": "#2e3447",
+                        "tertiary": "#7bd0ff",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-fixed": "#c4e7ff",
+                        "background": "#0c1324",
+                        "on-tertiary-container": "#ebf6ff",
+                        "surface": "#0c1324",
+                        "inverse-surface": "#dce1fb",
+                        "surface-container-lowest": "#070d1f",
+                        "inverse-on-surface": "#2a3043",
+                        "on-surface-variant": "#c2c6d9",
+                        "outline": "#8c90a2",
+                        "on-primary-container": "#f3f3ff",
+                        "on-background": "#dce1fb",
+                        "on-tertiary-fixed": "#001e2c",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "primary-container": "#0062ff",
+                        "primary": "#b4c5ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-container": "#aeb9d0",
+                        "surface-container-high": "#23293c",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface": "#dce1fb",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#424656",
+                        "tertiary-fixed-dim": "#7bd0ff",
+                        "on-primary": "#002a78",
+                        "surface-bright": "#33394c",
+                        "surface-container-low": "#151b2d",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "surface-tint": "#b4c5ff",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "tertiary-container": "#0078a2",
+                        "surface-dim": "#0c1324",
+                        "on-tertiary": "#00354a",
+                        "surface-variant": "#2e3447",
+                        "on-tertiary-fixed-variant": "#004c69",
+                        "on-primary-fixed-variant": "#003ea8"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(46, 52, 71, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        .ai-gradient-text {
+            background: linear-gradient(135deg, #b4c5ff 0%, #0062ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hud-border {
+            border: 1px solid rgba(180, 197, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<aside class="w-64 bg-surface-container-low flex flex-col border-r border-outline-variant/10">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div>
+<h1 class="text-on-surface font-bold text-lg leading-none">StartupLens</h1>
+<span class="text-on-surface-variant text-xs font-label tracking-wider uppercase">AI Ecosystem</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 mt-4 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="font-medium">Startups</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-medium">Investors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary-container/20 text-primary border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-medium">AI Evaluator</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-medium">AI Match</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-medium">Events</span>
+</a>
+</nav>
+<div class="p-4 bg-surface-container-lowest mx-3 mb-6 rounded-xl border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<span class="text-xs font-label text-tertiary tracking-widest uppercase">System Active</span>
+</div>
+<p class="text-[10px] text-on-surface-variant leading-relaxed">AI engine v2.4 analyzing global market trends in real-time.</p>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-h-screen relative overflow-y-auto">
+<!-- TopNavBar (Shared Component) -->
+<header class="h-16 flex items-center justify-between px-8 bg-surface/50 backdrop-blur-md sticky top-0 z-50">
+<div class="flex-1 max-w-xl">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary/50 transition-all" placeholder="Search ecosystem data..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20 bg-surface-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuFTYsBHV5VAplclN-NCFIk7mZnrBMdTdKP-mUABapP-0c7U2ybvM3uRZzoQSk7U6M_1N29JHRVsb_cudWOSDRtUPlVxQEoHJ2vixE1sZQPFzLAPwueSQNSgX_ol7mjaorQvk4_xjR7VIMUmAGdKrIVM8Li7PJWE4XHPeSEqwSeLZRXn6OBf9Jbi5q47p82vhn0yd8wM1W2yA6gIj6DAgAfwNVZlSCOG1xzknpRIocbCjSvo87mqX59DOVynmCMqhjIQk6QtYcXpk"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 space-y-8 max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold tracking-tighter uppercase bg-tertiary-container text-on-tertiary-container flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">bolt</span> Beta Access
+                    </span>
+<h2 class="text-sm font-label text-primary tracking-widest uppercase">Intelligence Aperture</h2>
+</div>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface">AI Startup Evaluator</h1>
+<p class="text-on-surface-variant max-w-2xl text-lg">Harness neural-network market analysis to objectively stress-test your business model against 1.2M historical data points.</p>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left: Input Form -->
+<section class="lg:col-span-5 space-y-6">
+<div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10 shadow-2xl relative overflow-hidden group">
+<!-- Background Accents -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/5 rounded-full blur-3xl transition-all group-hover:bg-primary/10"></div>
+<div class="relative space-y-6">
+<div class="space-y-2">
+<label class="text-xs font-label text-on-surface-variant tracking-widest uppercase">Startup Name</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-lg p-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-on-surface transition-all placeholder:text-on-surface-variant/30" placeholder="e.g. NeuralNode" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-label text-on-surface-variant tracking-widest uppercase">Pitch Description</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-lg p-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-on-surface transition-all placeholder:text-on-surface-variant/30 resize-none" placeholder="Detail your value proposition, target market, and technical advantage..." rows="8"></textarea>
+<div class="flex justify-between items-center text-[10px] font-label text-on-surface-variant/50 uppercase tracking-widest">
+<span>Recommended: 200+ words</span>
+<span>0 / 2000 characters</span>
+</div>
+</div>
+<button class="w-full group relative flex items-center justify-center gap-3 py-4 rounded-lg bg-gradient-to-br from-primary-container to-primary font-bold text-on-primary-fixed shadow-lg shadow-primary-container/20 hover:shadow-primary-container/40 transition-all overflow-hidden">
+<span class="material-symbols-outlined animate-spin text-sm">cycle</span>
+<span class="tracking-tight">Run Deep Analysis</span>
+<div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+</button>
+</div>
+</div>
+<!-- Usage Stats -->
+<div class="flex gap-4 p-4 rounded-xl bg-surface-container-highest/30 border border-outline-variant/5">
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-low" data-alt="User avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG9WMtkQ4RGWq9KnPDoPmdGBUlCKOA6SvQoLEWPdIYZ6deNT0pPIrdSFmLSu963D3XCHesLuLdX4kt-E5FOrqDdmHPXo5Rut5XQQGk3_O22_Asn2FnDNe7dXzwQUOGFYhOOXblpV3btKV0DGnTxL8seMxNQkkm_81PRqCg8W7ibz19ZEl0qHLa9tgTRDAYU6e9zrt-wjlO82bxb-NOSzvuSVt_hH6rSqV9ymUUFiKi41F7xi4Mt-EzuV_77mz-7dk9eEZv8Lntltk"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-low" data-alt="User avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwuAlMgzN5wtc8DZ7spetMtjJjrL62D_XU8B2s1fNXlmyNrfBJSY_IsV3urxszeOfmfD3uaI3yKNoYZKyzhyBT0sSnzKjl5Us-6jYj-n9on-u8Awqqz1d0AVKPmo2QfkscRy1Lr7hZzDnEXvnQKYEUoiYKxfnTBI-APL82Wwy1ySdqPW2yPM04fZ20FOf4NG5bKsOc8gM8KTVn85TgKBitGMS-BZsjdQkKIo0lKhrprVh0EBZ9TJ479jZo0E_22MkKqOU1gpF8AWk"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-low" data-alt="User avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBNgvPBTXNmobZZDKO04UAMHbEOA15loJQQZ19mat4qV5G_9SFSI9t_QamArURmYBz3Qgrc0kg5KTX4LjIfOusgge8iny3Xe0FES_y2xevA51aqHSBWHmDfLNjVPuFQl8vE2bMgVxqTNcPC__sKG41tsnCM3OD7wy_9lWMounc9rLemNx7V5BD9Kdu_O8NlX4-EKMudvgtDx_HxngsdfnYHwcB3MnllTfLe05517K0t-QCQNubM01Pq3kcjhmE3w3AYuCCajju1KA"/>
+</div>
+<p class="text-xs text-on-surface-variant flex items-center">
+                            Join <span class="text-on-surface font-bold mx-1">420+ founders</span> evaluating this week
+                        </p>
+</div>
+</section>
+<!-- Right: Results Dashboard -->
+<section class="lg:col-span-7 space-y-6">
+<!-- Dashboard State: Sample Result -->
+<div class="bg-surface-container p-8 rounded-2xl border border-primary/10 relative overflow-hidden">
+<!-- Top Header -->
+<div class="flex justify-between items-start mb-12">
+<div class="space-y-1">
+<h3 class="text-2xl font-bold text-on-surface">Analysis Report: <span class="text-primary">EcoSphera</span></h3>
+<p class="text-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">schedule</span> Evaluated 2 minutes ago
+                                </p>
+</div>
+<div class="flex flex-col items-end">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<!-- Circular Progress SVG -->
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-highest" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="45" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-3xl font-black text-on-surface">82</span>
+<span class="text-[8px] font-label tracking-widest uppercase text-primary">Score</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Grid Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-12">
+<!-- Detail Scores -->
+<div class="space-y-4">
+<h4 class="text-[10px] font-label tracking-widest uppercase text-on-surface-variant/60">Core Performance</h4>
+<div class="space-y-5">
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span>Market Fit</span>
+<span class="text-primary">92%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span>Solution Depth</span>
+<span class="text-tertiary">78%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span>Uniqueness</span>
+<span class="text-secondary">65%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span>Viability</span>
+<span class="text-primary">88%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 88%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Verdict & Key Strengths -->
+<div class="space-y-6">
+<div class="bg-surface-container-highest/40 p-4 rounded-xl border-l-4 border-tertiary">
+<h4 class="text-[10px] font-label tracking-widest uppercase text-tertiary mb-2">One-Line Verdict</h4>
+<p class="text-sm font-medium leading-relaxed italic text-on-surface italic">"Highly scalable model with strong retention signals, though competitive differentiation requires sharper focus."</p>
+</div>
+<div class="space-y-3">
+<h4 class="text-[10px] font-label tracking-widest uppercase text-on-surface-variant/60">Key Strengths</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-primary-container/10 border border-primary/20 text-[11px] font-medium text-primary">Zero CAC Potential</span>
+<span class="px-3 py-1 rounded-full bg-primary-container/10 border border-primary/20 text-[11px] font-medium text-primary">High Exit Multiple</span>
+<span class="px-3 py-1 rounded-full bg-primary-container/10 border border-primary/20 text-[11px] font-medium text-primary">Proprietary IP</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Improvement Bento -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="md:col-span-2 bg-surface-container-low p-5 rounded-xl border border-outline-variant/10">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-tertiary text-lg">lightbulb</span>
+<h4 class="text-xs font-bold uppercase tracking-wider">Improvement Suggestions</h4>
+</div>
+<ul class="space-y-2 text-xs text-on-surface-variant">
+<li class="flex gap-2">
+<span class="text-tertiary font-bold">•</span>
+                                        Refine the B2B pricing tier to reduce friction for mid-market clients.
+                                    </li>
+<li class="flex gap-2">
+<span class="text-tertiary font-bold">•</span>
+                                        Develop a more robust technical roadmap for the AI integration layer.
+                                    </li>
+</ul>
+</div>
+<div class="bg-primary-container p-5 rounded-xl flex flex-col justify-between">
+<h4 class="text-xs font-bold text-on-primary uppercase tracking-wider">Investor Interest</h4>
+<div class="text-3xl font-black text-on-primary">High</div>
+<p class="text-[10px] text-on-primary/70 leading-tight">Top 5% of startups in Circular Economy sector this quarter.</p>
+</div>
+</div>
+<!-- Decorative HUD Element -->
+<div class="absolute bottom-4 right-8 flex gap-1 opacity-20">
+<div class="w-1 h-4 bg-primary rounded-full"></div>
+<div class="w-1 h-6 bg-primary rounded-full"></div>
+<div class="w-1 h-3 bg-primary rounded-full"></div>
+<div class="w-1 h-8 bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- AI Confidence Indicator -->
+<div class="flex items-center justify-between px-6 py-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-tertiary/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-base" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<p class="text-xs font-bold">Analysis Confidence</p>
+<p class="text-[10px] text-on-surface-variant">Based on cross-referenced market indicators</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-lg font-black text-tertiary leading-none">96.4%</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Certainty index</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Contextual Insights Section (Bottom) -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 pt-8">
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/5">
+<span class="material-symbols-outlined text-primary mb-4">insights</span>
+<h5 class="text-sm font-bold mb-1">Market Sentiment</h5>
+<p class="text-xs text-on-surface-variant">Consumer demand for sustainable tech is up 14% YoY in your region.</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/5">
+<span class="material-symbols-outlined text-tertiary mb-4">groups</span>
+<h5 class="text-sm font-bold mb-1">Competitor Density</h5>
+<p class="text-xs text-on-surface-variant">Low. Only 3 significant players found in this specific niche.</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/5">
+<span class="material-symbols-outlined text-secondary mb-4">currency_exchange</span>
+<h5 class="text-sm font-bold mb-1">Recent Exits</h5>
+<p class="text-xs text-on-surface-variant">Average exit multiple in this space: 11.2x ARR (Last 12mo).</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/5">
+<span class="material-symbols-outlined text-error mb-4">warning</span>
+<h5 class="text-sm font-bold mb-1">Red Flags</h5>
+<p class="text-xs text-on-surface-variant">Regulatory headwind detected in EU market (GDPR Section 4).</p>
+</div>
+</section>
+</div>
+<!-- Background Decorative Blur -->
+<div class="fixed top-1/4 -right-64 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed -bottom-64 -left-64 w-[500px] h-[500px] bg-tertiary/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+</main>
+</body></html>

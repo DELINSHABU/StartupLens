@@ -1,0 +1,156 @@
+{
+  "startups": [
+    {
+      "id": "ST001",
+      "name": "EduFlow AI",
+      "description": "AI-powered personalized learning platform adapting to each student's pace and learning style",
+      "category": "EdTech",
+      "fundingStage": "Seed",
+      "fundingRaised": "$750K",
+      "teamSize": 12,
+      "foundedDate": "2024-01-15",
+      "city": "Abu Dhabi",
+      "website": "https://eduflowai.com",
+      "pitchDeckUrl": "/pitch-decks/eduflow-narr.pdf",
+      "demo": "https://demo.eduflowai.com",
+      "keyMetrics": {
+        "monthlyActiveUsers": 5000,
+        "revenue": "$12K/month",
+        "growthRate": "25% MoM"
+      }
+    },
+    {
+      "id": "ST002",
+      "name": "SolarSync",
+      "description": "IoT platform optimizing solar panel efficiency through predictive weather analytics and real-time monitoring",
+      "category": "CleanTech",
+      "fundingStage": "Pre-Seed",
+      "fundingRaised": "$200K",
+      "teamSize": 6,
+      "foundedDate": "2024-03-01",
+      "city": "Dubai",
+      "website": "https://solarsync.io",
+      "pitchDeckUrl": "/pitch-decks/solarsync-narr.pdf",
+      "demo": "https://demo.solarsync.io",
+      "keyMetrics": {
+        "activeDeployments": 45,
+        "energySaved": "2.3M kWh/year",
+        "revenue": "$8K/month"
+      }
+    },
+    {
+      "id": "ST003",
+      "name": "FinGuard MENA",
+      "description": "RegTech platform automating compliance for fintech companies across GCC markets",
+      "category": "FinTech",
+      "fundingStage": "Series A",
+      "fundingRaised": "$4.5M",
+      "teamSize": 35,
+      "foundedDate": "2023-05-10",
+      "city": "Riyadh",
+      "website": "https://finguard.io",
+      "pitchDeckUrl": "/pitch-decks/finguard-narr.pdf",
+      "demo": "https://demo.finguard.io",
+      "keyMetrics": {
+        "enterpriseClients": 28,
+        "marketsServed": 6,
+        "revenue": "$250K/month"
+      }
+    },
+    {
+      "id": "ST004",
+      "name": "HealthHub AI",
+      "description": "AI diagnostic assistant for primary care clinics, reducing patient wait times and misdiagnosis rates",
+      "category": "HealthTech",
+      "fundingStage": "Seed",
+      "fundingRaised": "$1.2M",
+      "teamSize": 18,
+      "foundedDate": "2024-02-20",
+      "city": "Dubai",
+      "website": "https://healthhubai.io",
+      "pitchDeckUrl": "/pitch-decks/healthhub-narr.pdf",
+      "demo": "https://demo.healthhubai.io",
+      "keyMetrics": {
+        "clinicsPartnered": 15,
+        "diagnosesMade": 45000,
+        "accuracyRate": "94.5%"
+      }
+    },
+    {
+      "id": "ST005",
+      "name": "AgriSmart IoT",
+      "description": "Smart farming solution monitoring soil health, weather, and crop conditions using IoT sensors",
+      "category": "AgriTech",
+      "fundingStage": "Pre-Seed",
+      "fundingRaised": "$300K",
+      "teamSize": 8,
+      "foundedDate": "2024-04-05",
+      "city": "Al Ain",
+      "website": "https://agrismart.io",
+      "pitchDeckUrl": "/pitch-decks/agrismart-narr.pdf",
+      "demo": "https://demo.agrismart.io",
+      "keyMetrics": {
+        "acresMonitored": 1200,
+        "farmsActive": 24,
+        "yieldImprovement": "18%"
+      }
+    },
+    {
+      "id": "ST006",
+      "name": "LogiConnect GCC",
+      "description": "Digital freight marketplace connecting shippers and carriers with AI-optimized route planning",
+      "category": "Logistics",
+      "fundingStage": "Series A",
+      "fundingRaised": "$6M",
+      "teamSize": 42,
+      "foundedDate": "2023-08-15",
+      "city": "Jeddah",
+      "website": "https://logiconnect.io",
+      "pitchDeckUrl": "/pitch-decks/logiconnect-narr.pdf",
+      "demo": "https://demo.logiconnect.io",
+      "keyMetrics": {
+        "monthlyShipments": 8500,
+        "carriersOnPlatform": 320,
+        "revenue": "$380K/month"
+      }
+    },
+    {
+      "id": "ST007",
+      "name": "CyberShield Gulf",
+      "description": "Automated cybersecurity platform for SMEs with 24/7 threat monitoring and compliance reporting",
+      "category": "Cybersecurity",
+      "fundingStage": "Seed",
+      "fundingRaised": "$950K",
+      "teamSize": 15,
+      "foundedDate": "2024-01-08",
+      "city": "Doha",
+      "website": "https://cybershield.io",
+      "pitchDeckUrl": "/pitch-decks/cybershield-narr.pdf",
+      "demo": "https://demo.cybershield.io",
+      "keyMetrics": {
+        "companiesProtected": 140,
+        "threatsBlocked": 25000,
+        "revenue": "$28K/month"
+      }
+    },
+    {
+      "id": "ST008",
+      "name": "Nurture Arabic",
+      "description": "Natural Language Processing platform for Modern Standard Arabic, powering chatbots and content analysis",
+      "category": "AI/ML",
+      "fundingStage": "Series A",
+      "fundingRaised": "$5.5M",
+      "teamSize": 28,
+      "foundedDate": "2023-10-01",
+      "city": "Abu Dhabi",
+      "website": "https://nurturearabic.io",
+      "pitchDeckUrl": "/pitch-decks/nurture-narr.pdf",
+      "demo": "https://demo.nurturearabic.io",
+      "keyMetrics": {
+        "apiCallsDaily": 2.5M,
+        "clients": 45,
+        "revenue": "$150K/month"
+      }
+    }
+  ]
+}

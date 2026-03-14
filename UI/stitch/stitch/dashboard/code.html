@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary": "#263143",
+              "inverse-primary": "#0053da",
+              "secondary-fixed": "#d8e3fb",
+              "surface-container": "#191f31",
+              "secondary": "#bcc7de",
+              "on-secondary-fixed": "#111c2d",
+              "error-container": "#93000a",
+              "secondary-container": "#3e495d",
+              "surface-container-highest": "#2e3447",
+              "tertiary": "#7bd0ff",
+              "primary-fixed": "#dbe1ff",
+              "tertiary-fixed": "#c4e7ff",
+              "background": "#0c1324",
+              "on-tertiary-container": "#ebf6ff",
+              "surface": "#0c1324",
+              "inverse-surface": "#dce1fb",
+              "surface-container-lowest": "#070d1f",
+              "inverse-on-surface": "#2a3043",
+              "on-surface-variant": "#c2c6d9",
+              "outline": "#8c90a2",
+              "on-primary-container": "#f3f3ff",
+              "on-background": "#dce1fb",
+              "on-tertiary-fixed": "#001e2c",
+              "on-secondary-fixed-variant": "#3c475a",
+              "primary-container": "#0062ff",
+              "primary": "#b4c5ff",
+              "on-primary-fixed": "#00174b",
+              "on-secondary-container": "#aeb9d0",
+              "surface-container-high": "#23293c",
+              "primary-fixed-dim": "#b4c5ff",
+              "on-surface": "#dce1fb",
+              "on-error-container": "#ffdad6",
+              "outline-variant": "#424656",
+              "tertiary-fixed-dim": "#7bd0ff",
+              "on-primary": "#002a78",
+              "surface-bright": "#33394c",
+              "surface-container-low": "#151b2d",
+              "error": "#ffb4ab",
+              "on-error": "#690005",
+              "surface-tint": "#b4c5ff",
+              "secondary-fixed-dim": "#bcc7de",
+              "tertiary-container": "#0078a2",
+              "surface-dim": "#0c1324",
+              "on-tertiary": "#00354a",
+              "surface-variant": "#2e3447",
+              "on-tertiary-fixed-variant": "#004c69",
+              "on-primary-fixed-variant": "#003ea8"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.25rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(46, 52, 71, 0.6);
+            backdrop-filter: blur(12px);
+        }
+        .ai-pulse {
+            box-shadow: 0 0 15px rgba(0, 120, 162, 0.3);
+        }
+        .hud-border {
+            border: 1px solid rgba(66, 70, 86, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="w-64 bg-surface-container-low flex flex-col h-screen sticky top-0 overflow-y-auto">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-primary-container to-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed text-sm" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div>
+<h1 class="text-sm font-bold text-on-surface tracking-tight">StartupLens</h1>
+<p class="text-[10px] text-primary uppercase tracking-[0.1em]">AI Ecosystem</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-container text-on-surface" href="#">
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="text-sm font-medium">Startups</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-sm font-medium">Investors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-sm font-medium">AI Evaluator</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-sm font-medium">AI Match</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="text-sm font-medium">Events</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="p-4 rounded-xl bg-surface-container-highest/50 border border-outline-variant/10">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-tertiary ai-pulse"></span>
+<span class="text-[10px] font-bold text-tertiary uppercase tracking-wider">AI Insight</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">3 new matches found based on your recent activity.</p>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<header class="h-16 border-b border-outline-variant/10 bg-surface/80 backdrop-blur-md flex items-center justify-between px-8 sticky top-0 z-30">
+<div class="flex items-center bg-surface-container-lowest px-4 py-1.5 rounded-full w-96 hud-border">
+<span class="material-symbols-outlined text-outline text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-on-surface placeholder:text-outline/50" placeholder="Search ecosystem..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/20 mx-2"></div>
+<img alt="User Profile" class="w-8 h-8 rounded-full ring-2 ring-primary/20" data-alt="Professional user profile avatar headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMES_8h-8df1MLzthnubJrw-4Q4ZL1GwTJSeqMMb9zkKQw6TFw5Y_jHGv6uB1skvC82usbirfJ_V_uVIWwvLl9R7MXf8pdeDrUnievnCBrC0-7L_qI2fosLVRhLZqc_Tul9UHNmIqVxouzcneFaFDo24QLhMaukkGW6g_GeUN4qQ7wd6F869808Rwkt57HHgi5PiutktbYSw_O8WzU6NtZGl_sjWMcKaU2zubTLYcFl8N6dGaIIF1TC5OyI_ftNGGiRActXOuyFes"/>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="p-8 max-w-7xl mx-auto w-full">
+<!-- Hero Header -->
+<div class="mb-10 flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface mb-1">Ecosystem Overview</h2>
+<p class="text-on-surface-variant">Real-time pulse of the StartupLens network.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 rounded-lg bg-surface-container-highest text-on-surface font-medium text-sm flex items-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-lg">download</span>
+                        Export Data
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-12 gap-6 mb-12">
+<!-- Stat Card 1 -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-low p-6 rounded-xl hud-border relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">rocket_launch</span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant mb-4 flex items-center gap-2">
+                        Total Startups
+                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary">+12%</span>
+</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold text-on-surface">1,240</span>
+<span class="text-outline-variant text-sm">Active</span>
+</div>
+<div class="mt-6 h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%] rounded-full"></div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-low p-6 rounded-xl hud-border relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">payments</span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant mb-4 flex items-center gap-2">
+                        Total Investors
+                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary">+5%</span>
+</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold text-on-surface">342</span>
+<span class="text-outline-variant text-sm">Verified</span>
+</div>
+<div class="mt-6 h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[45%] rounded-full"></div>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-low p-6 rounded-xl hud-border relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">event</span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant mb-4 flex items-center gap-2">
+                        Upcoming Events
+                    </p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold text-on-surface">12</span>
+<span class="text-outline-variant text-sm">This Month</span>
+</div>
+<div class="mt-6 flex -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-surface-container-low" data-alt="Event attendee profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs4kmv0o5oLvRx0VfP6Vc4MFKWxxOWU2Vv_8HIz4eJqsD70NilHjA8MLnIvtP231vyj5pL40gNP2qWeaYbYemF21AFMglaT8WnZP3gAzFKo40lxIR4lswCKGwxC9XqBw8CNrTJxXktfy1NBHekOcWgIIY1ke_0m8cZdV2VZalf8h1QOJJGOr6zdTTjN2L_WrKQEQRCrotwiCFni6nW-SujxSR-cGFAgu3tW1Jj4a6WRAr0B6h50_HrUkZs3LOtJGzuSBttniZuJQM"/>
+<img class="w-6 h-6 rounded-full border-2 border-surface-container-low" data-alt="Event attendee profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqflY-gAgXKdn5vEVdTDZFu772Ki-OUBueqoPVVnbrvujx8cIOCQ_UiMOnykNgGkUdxQ-vj-JP_bjiuSaEpvScqJxWuVuSiKxWuuzkYrTC1QaoMcAKeoOiRNkEo_trNzcnFM1sf6OLtFK16B6a9Jb4oWPFDDa_qYopslo1fOatMKy1HboXTA4ARyQZf1D56D-5uap6SuZB6SDIj3bcSpoBjGANN0vfpH_CtcTTdKgjbOqzMwM_CZxsm3fyW_sOirFzmfqsb0xYpwE"/>
+<img class="w-6 h-6 rounded-full border-2 border-surface-container-low" data-alt="Event attendee profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs5eOhV6xFSAqgfk_ux01GVPrek5lmtjad92q834dXFyC3jqz54qua_d2NQ4pv1isJ5eqct1_DZT2p5MR_-ww25Eq015RyJiO1-jrZbIikLvpduWcbmLExOb4wYoLqvaD0TdSHrFpClnMPVknXfpSKopJTh3r1JTBV05kcb2GLGz547IAufYvTC0fX3yjcmPfGP6yc7nvcvyH8ig65Z969ekoJ1hZ7B8vwB6ccAEVWOAFnq_hMvIUft8iDf1elrNtImuryeGIrgXc"/>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-surface-container-low flex items-center justify-center text-[8px] font-bold">+82</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions & Recent Activity -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Quick Actions Column -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<h3 class="text-lg font-bold text-on-surface px-1">Quick Actions</h3>
+<div class="space-y-4">
+<button class="w-full group p-4 rounded-xl bg-gradient-to-br from-primary-container to-primary text-on-primary-fixed flex items-center justify-between transition-all hover:scale-[1.02]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_box</span>
+</div>
+<div class="text-left">
+<p class="font-bold text-sm">Add Startup</p>
+<p class="text-xs opacity-80">Onboard new venture</p>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</button>
+<button class="w-full group p-4 rounded-xl bg-surface-container text-on-surface hud-border flex items-center justify-between transition-all hover:bg-surface-container-highest">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container/30 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div class="text-left">
+<p class="font-bold text-sm">Evaluate Idea</p>
+<p class="text-xs text-on-surface-variant">Run AI risk assessment</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+<button class="w-full group p-4 rounded-xl bg-surface-container text-on-surface hud-border flex items-center justify-between transition-all hover:bg-surface-container-highest">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/30 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_search</span>
+</div>
+<div class="text-left">
+<p class="font-bold text-sm">Find Investors</p>
+<p class="text-xs text-on-surface-variant">Match with capital</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Recent Activity Column -->
+<div class="col-span-12 lg:col-span-8">
+<div class="flex items-center justify-between mb-6 px-1">
+<h3 class="text-lg font-bold text-on-surface">Recent Activity</h3>
+<button class="text-sm font-medium text-primary hover:underline">View All</button>
+</div>
+<div class="bg-surface-container-low rounded-xl hud-border overflow-hidden">
+<!-- Activity Feed -->
+<div class="divide-y divide-outline-variant/10">
+<!-- Activity Item 1 -->
+<div class="p-5 flex items-start gap-4 hover:bg-surface-container/30 transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary text-xl">new_releases</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-sm font-bold text-on-surface">NeuroFlow AI Joined</h4>
+<span class="text-[10px] text-outline-variant uppercase">2m ago</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-3">A biotech startup focused on non-invasive neural interfaces has just completed verification.</p>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface">Biotech</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface">Seed</span>
+</div>
+</div>
+</div>
+<!-- Activity Item 2 (Event) -->
+<div class="p-5 flex items-start gap-4 hover:bg-surface-container/30 transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-xl">celebration</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-sm font-bold text-on-surface">IFAVH AI Hackathon</h4>
+<span class="text-[10px] text-outline-variant uppercase">Next Week</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Official registration is now open for the annual ecosystem hackathon. Over $50k in prizes.</p>
+<div class="mt-3 flex items-center gap-3">
+<div class="flex -space-x-1.5">
+<img class="w-5 h-5 rounded-full border border-surface-container-low" data-alt="Attendee profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2m1I8GqySC7G9FojhXuQLRIlU29ezFRmH1FaLfqDRXv7b8a7HHXW8fTwWENYTyY_73abk137rI_eF5uxXsDm2TZX9NFS2wCiu0LTpiKaHCsbVfU_PDBF7eZO6Dsnr-RL6T_Hn_NLT6l1ZW5kL43He9bFTl_F5c3NRjQ_X87WyJANJvCTNK9VNvomamkwHZROC3JpobcSfgViXGriGfemqmjLul_UGW2qxILyny1JUyFh1tkAen-Z-5bmLqX8WhaoFbLF4Vjv72UY"/>
+<img class="w-5 h-5 rounded-full border border-surface-container-low" data-alt="Attendee profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmFym-Lzky-NeRuxA7-G5mYmsJh7VS2Ru8vanrqktKKjg8zhy73IYuDL4XNklnwdbDtzXopoNOQXhTPznSU1YxZJuTlk3dUxW1_G6evH4P9i6fnSb7UD5oujQVUmX6rkonl65TI5h3t9hNjf3UHwe8U-S7quqxQJUEi8NoQ16As75vYqU-IlT8ko87XJjuZgJVR7jnBAbyN2gG2Qtpp9W5TQpd_AnAZfHfc238bjiD6LZKpOMRAv4ndcBTeadTfOTdk2NG8UXuFjE"/>
+</div>
+<span class="text-[10px] text-outline-variant">124 registered</span>
+</div>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="p-5 flex items-start gap-4 hover:bg-surface-container/30 transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary text-xl">handshake</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-sm font-bold text-on-surface">New Investor: Zenith Capital</h4>
+<span class="text-[10px] text-outline-variant uppercase">4h ago</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Tier-1 VC firm from London has joined the platform seeking Series A opportunities.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

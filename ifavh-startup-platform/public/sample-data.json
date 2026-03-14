@@ -1,0 +1,149 @@
+  "events": [
+    {
+      "title": "IFAVH AI Hackathon 2025",
+      "description": "2-hour AI-powered hackathon at Space42 Arena. Build an MVP for a startup ecosystem platform.",
+      "date": "2025-03-14",
+      "location": "Space42 Arena, Abu Dhabi"
+    },
+    {
+      "title": "MENA Startup Summit",
+      "description": "3-day conference bringing together 2000+ founders, investors, and ecosystem builders from across the region.",
+      "date": "2025-04-20",
+      "location": "ADNEC, Abu Dhabi"
+    },
+    {
+      "title": "FinTech Demo Day",
+      "description": "10 fintech startups pitch to a panel of VCs and banking executives. $500K in prizes.",
+      "date": "2025-05-05",
+      "location": "DIFC Innovation Hub, Dubai"
+    },
+    {
+      "title": "Climate Tech Founders Meetup",
+      "description": "Monthly networking event for cleantech and agritech founders in the Gulf region.",
+      "date": "2025-03-28",
+      "location": "Hub71, Abu Dhabi"
+    },
+    {
+      "title": "Women in Tech Mixer",
+      "description": "Evening networking event for female founders and leaders in the MENA tech ecosystem. Keynote and panel discussion.",
+      "date": "2025-04-12",
+      "location": "In5 Tech, Dubai"
+    },
+    {
+      "title": "AI/ML Workshop Series",
+      "description": "5-part workshop series on practical AI applications. Topics: LLM fine-tuning, computer vision, NLP for Arabic, and regulatory compliance.",
+      "date": "2025-04-01",
+      "location": "KAUST, Thuwal"
+    },
+    {
+      "title": "Pre-Seed Pitch Night",
+      "description": "15 early-stage startups pitch to angel investors. Open bar and networking. $10K in micro-grants.",
+      "date": "2025-05-15",
+      "location": "Dubai Internet City (DIC)"
+    },
+    {
+      "title": "Blockchain & Web3 Summit",
+      "description": "2-day conference exploring distributed ledger tech in MENA. Talks on DeFi, NFTs, and regulation.",
+      "date": "2025-06-10",
+      "location": "Marina Square, Jeddah"
+    },
+    {
+      "title": "Startup Weekend Dubai",
+          description": "54-hour hackathon to build a startup. Mentors from local VCs and tech leaders. Top prize $10K in credits.",
+      "date": "2025-04-25",
+      "location": "Astrolabs, Dubai"
+    },
+    {
+      "title": "Growth Hacking Masterclass",
+      "description": "Workshop on growth strategies for startups. Learn CAC optimization, retention tactics, and viral loops from industry experts.",
+      "date": "2025-05-20",
+      "location": "Space42 Arena, Abu Dhabi"
+    },
+      {
+      "title": "Series A Roadshow",
+      "description": "Multi-city roadshow for founders raising Series A. Pitch events in Abu Dhabi, Riyadh, Dubai, and Doha. Connect to 30+ VCs.",
+      "date": "2025-03-20",
+      "location": "Virtual + In-person at 4 cities"
+    }
+    {
+      "title": "EdTech Innovation Forum",
+      "description": "Gathering of founders, educators, and investors focused on education technology in MENA. Panel discussions and fireside chats.",
+      "date": "2025-05-30",
+      "location": "NYU Abu Dhabi"
+    },n    {
+      "title": "Founders Dinner Circle",
+      "description": "Monthly closed-door dinner for 8 founders. No selling, just sharing challenges and peer support. By invitation only.",
+      "date": "2025-04-15",
+      "location": "Shangri-La Residence, Abu Dhabi"
+    }
+  ]
+}
+  "investors": [
+    {
+      "name": "Venture Gulf Capital",
+      "bio": "Leading early-stage VC firm focused on MENA tech startups. $200M AUM across 3 funds. Portfolio includes 45+ companies with 8 exits.",
+      "focusAreas": ["AI/ML", "FinTech", "SaaS"],
+      "checkSize": "$500K - $5M",
+      "stagePreference": "Seed",
+      "contactEmail": "deals@venturegulf.vc"
+    },
+    {
+      "name": "TechBridge Partners",
+      "bio": "Growth-stage investment firm bridging Silicon Valley and Abu Dhabi. We back founders scaling from Series A to IPO.",
+      "focusAreas": ["HealthTech", "CleanTech", "DeepTech"],
+      "checkSize": "$2M - $15M",
+      "stagePreference": "Series A",
+      "contactEmail": "info@techbridge.partners"
+    },
+    {
+      "name": "Al Noor Angels",
+      "bio": "Angel syndicate of 80+ MENA tech executives and entrepreneurs. Hands-on mentorship with every investment.",
+      "focusAreas": ["EdTech", "FinTech", "Cybersecurity"],
+      "checkSize": "$50K - $500K",
+      "stagePreference": "Pre-Seed",
+      "contactEmail": "hello@alnoorangels.com"
+    },
+    {
+      "name": "Desert Innovation Fund",
+      "bio": "Government-backed fund supporting deep-tech and climate innovation in the GCC. Focus on sustainability and food security.",
+      "focusAreas": ["CleanTech", "AgriTech", "Logistics"],
+      "checkSize": "$1M - $10M",
+      "stagePreference": "Seed",
+      "contactEmail": "apply@desertinnovation.fund"
+    },
+    {
+      "name": "Horizon Ventures ME",
+      "bio": "Corporate VC arm of a major telecom group. Strategic investments in AI, IoT, and digital infrastructure.",
+      "focusAreas": ["AI/ML", "Cybersecurity", "IoT"],
+      "checkSize": "$3M - $20M",
+      "stagePreference": "Series B",
+      "contactEmail": "ventures@horizonme.com"
+    }
+  ],
+  "events": [
+    {
+      "title": "IFAVH AI Hackathon 2025",
+      "description": "2-hour AI-powered hackathon at Space42 Arena. Build an MVP for a startup ecosystem platform.",
+      "date": "2025-03-14",
+      "location": "Space42 Arena, Abu Dhabi"
+    },
+    {
+      "title": "MENA Startup Summit",
+      "description": "3-day conference bringing together 2000+ founders, investors, and ecosystem builders from across the region.",
+      "date": "2025-04-20",
+      "location": "ADNEC, Abu Dhabi"
+    },
+    {
+      "title": "FinTech Demo Day",
+      "description": "10 fintech startups pitch to a panel of VCs and banking executives. $500K in prizes.",
+      "date": "2025-05-05",
+      "location": "DIFC Innovation Hub, Dubai"
+    },
+    {
+      "title": "Climate Tech Founders Meetup",
+      "description": "Monthly networking event for cleantech and agritech founders in the Gulf region.",
+      "date": "2025-03-28",
+      "location": "Hub71, Abu Dhabi"
+    }
+  ]
+}

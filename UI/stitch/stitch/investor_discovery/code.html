@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Investor Discovery | StartupLens</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0c1324;
+            color: #dce1fb;
+            margin: 0;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(46, 52, 71, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .ai-gradient-bg {
+            background: linear-gradient(135deg, #0062ff 0%, #b4c5ff 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #151b2d;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2e3447;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#263143",
+                        "inverse-primary": "#0053da",
+                        "secondary-fixed": "#d8e3fb",
+                        "surface-container": "#191f31",
+                        "secondary": "#bcc7de",
+                        "on-secondary-fixed": "#111c2d",
+                        "error-container": "#93000a",
+                        "secondary-container": "#3e495d",
+                        "surface-container-highest": "#2e3447",
+                        "tertiary": "#7bd0ff",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-fixed": "#c4e7ff",
+                        "background": "#0c1324",
+                        "on-tertiary-container": "#ebf6ff",
+                        "surface": "#0c1324",
+                        "inverse-surface": "#dce1fb",
+                        "surface-container-lowest": "#070d1f",
+                        "inverse-on-surface": "#2a3043",
+                        "on-surface-variant": "#c2c6d9",
+                        "outline": "#8c90a2",
+                        "on-primary-container": "#f3f3ff",
+                        "on-background": "#dce1fb",
+                        "on-tertiary-fixed": "#001e2c",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "primary-container": "#0062ff",
+                        "primary": "#b4c5ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-container": "#aeb9d0",
+                        "surface-container-high": "#23293c",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface": "#dce1fb",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#424656",
+                        "tertiary-fixed-dim": "#7bd0ff",
+                        "on-primary": "#002a78",
+                        "surface-bright": "#33394c",
+                        "surface-container-low": "#151b2d",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "surface-tint": "#b4c5ff",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "tertiary-container": "#0078a2",
+                        "surface-dim": "#0c1324",
+                        "on-tertiary": "#00354a",
+                        "surface-variant": "#2e3447",
+                        "on-tertiary-fixed-variant": "#004c69",
+                        "on-primary-fixed-variant": "#003ea8"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary">
+<div class="flex h-screen overflow-hidden">
+<!-- Shared Component: SideNavBar -->
+<aside class="w-64 bg-surface-container-low flex flex-col border-r border-outline-variant/10">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div>
+<h1 class="text-on-surface font-bold leading-none">StartupLens</h1>
+<p class="text-xs text-on-surface-variant mt-1">AI Ecosystem</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="text-sm">Startups</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-container-highest text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="text-sm font-medium">Investors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-sm">AI Evaluator</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-sm">AI Match</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="text-sm">Events</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="p-4 rounded-xl bg-surface-container-high border border-outline-variant/10">
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold mb-2">QUOTA</p>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden mb-2">
+<div class="h-full ai-gradient-bg w-3/4"></div>
+</div>
+<p class="text-xs text-on-surface-variant">75/100 Lookups used</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden bg-surface">
+<!-- Shared Component: TopNavBar -->
+<header class="h-16 border-b border-outline-variant/10 flex items-center justify-between px-8 bg-surface/50 backdrop-blur-md z-10">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary/30 placeholder:text-outline/50" placeholder="Search for investors, funds, or keywords..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-8">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/20 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional female corporate user headshot portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh-n4JhUJUWoU1jfjB3Ohb3bXfjU2sznSKBDKAns61VbDmUOdgEG5PsIp-6qJitzTmRvJb0NDSdTAt2sSFqZa3nzpY4tEvUn1PQxs8G_ulPQA4COvRqbqk8nD82vg4R33Oenl3dM5lFw9luosi0QIfU4gOq-hhRSiBetLe4LZUF-0MeY_rDQ4a-VGTtTUWFQcD8ejL-rzQ8hRdkKXjBa0u1kK_cU_oQN8aqrbsHaaV4CjIP8P-vD2eKEegTaTR0AOrxZtNC5h01PI"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-8">
+<!-- Hero & Filters Section -->
+<div class="mb-12">
+<div class="flex justify-between items-end mb-8">
+<div>
+<span class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2 block">Discovery Hub</span>
+<h2 class="text-4xl font-headline font-bold text-on-surface tracking-tight">Connect with Capital</h2>
+<p class="text-on-surface-variant mt-2 max-w-lg">Discover the perfect strategic partner from our curated database of 5,000+ institutional and angel investors.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 bg-surface-container-highest text-on-surface text-sm font-medium rounded-lg flex items-center gap-2 hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                                Advanced Filters
+                            </button>
+<button class="px-5 py-2.5 ai-gradient-bg text-on-primary font-bold text-sm rounded-lg flex items-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                                AI Smart Match
+                            </button>
+</div>
+</div>
+<!-- Filter Tags -->
+<div class="flex flex-wrap gap-2 pb-4">
+<button class="px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold">All Investors</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant text-xs font-semibold hover:bg-surface-container-high border border-transparent transition-all">SaaS</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant text-xs font-semibold hover:bg-surface-container-high border border-transparent transition-all">Fintech</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant text-xs font-semibold hover:bg-surface-container-high border border-transparent transition-all">DeepTech</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant text-xs font-semibold hover:bg-surface-container-high border border-transparent transition-all">HealthTech</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant text-xs font-semibold hover:bg-surface-container-high border border-transparent transition-all">ClimateTech</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant text-xs font-semibold hover:bg-surface-container-high border border-transparent transition-all">Web3</button>
+</div>
+</div>
+<!-- Investor Grid (Bento Style Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Investor Card 1 -->
+<div class="group bg-surface-container rounded-xl p-6 border border-outline-variant/5 hover:border-primary/30 transition-all relative overflow-hidden flex flex-col">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors cursor-pointer">bookmark_add</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center p-2 border border-outline-variant/10 overflow-hidden">
+<img alt="Venture Capital Logo" class="w-full h-full object-contain" data-alt="Minimalist geometric logo of a venture capital firm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU24UQcGcHGP4IYQRHrr974BFiSlNSJKXFg1ph0FQSXkwfKCS-68i91a98tFCC_6o3mHOrUPzVH5qC8Sn5vD_gAZV-DaWGPaofQGdO_Hr_yi8QA_sV1mP0FBAWxcKTzdnMkFgA9ZxvH9vPz3b0XnWf8fcBhKfLt_HDj5fjKi6XlXbcj0obCGAqMenxjWz1qYxFpZCMUs9YwnynFYLbezNLI5YDXq4FmDuWp2OQWsl-IN-Jb2t73ea9kq3lqHcHCUDVtJhutK4kYMk"/>
+</div>
+<div>
+<h3 class="text-xl font-headline font-bold text-on-surface">Nebula Ventures</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">verified</span>
+<span class="text-xs text-on-surface-variant">Top Tier Fund</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-1">Early-stage focus on distributed systems, AI infrastructure, and the future of enterprise software across EMEA.</p>
+<div class="space-y-4 pt-4 border-t border-outline-variant/10">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Enterprise AI</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">SaaS</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Cybersecurity</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-3 rounded-lg">
+<div>
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Check Size</p>
+<p class="text-sm font-semibold text-on-surface">$500k – $3.5M</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Preferred Stage</p>
+<p class="text-sm font-semibold text-on-surface">Seed / Series A</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Investor Card 2 -->
+<div class="group bg-surface-container-high rounded-xl p-6 border border-outline-variant/20 hover:border-primary/30 transition-all relative overflow-hidden flex flex-col scale-[1.02] shadow-2xl shadow-primary/5">
+<div class="absolute top-0 right-0 p-4 flex gap-2">
+<div class="px-2 py-1 rounded bg-tertiary-container text-on-tertiary-container text-[9px] font-bold flex items-center gap-1 animate-pulse">
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                                AI MATCHED 98%
+                            </div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors cursor-pointer">bookmark_add</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center p-2 border border-outline-variant/10 overflow-hidden">
+<img alt="Capital Partners Logo" class="w-full h-full object-contain" data-alt="Abstract corporate brand mark for an investment bank" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNFUV764uP6weK_giY8T5T4ZcvpPnNKmkgM6ARmJ9q7IvTYaOZqG3WcaZYLfJ3TOlVL7U5dxxN9D5y-YhqudoZJar32QPNaO8TJeWLUA5DP-bVP2peZQX67Gn0X8NHFjKMouH5XkyL9hA-Ao4fk1IZyuaWgzKAS1CpruCH3NTtLN8T7XTu83ZEtwe2UBUzMLCh6t4irJgqX3HBok24z3sCE9EGSDJbbGwLQcrqN7-rcV7imOYm_1euir8T-DSdGQPbVXW0R9f0H8A"/>
+</div>
+<div>
+<h3 class="text-xl font-headline font-bold text-on-surface">Oasis Capital</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-primary">location_on</span>
+<span class="text-xs text-on-surface-variant">San Francisco, CA</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-1">Passionate about backing diverse founders solving climate crisis through hardware and vertical software integration.</p>
+<div class="space-y-4 pt-4 border-t border-outline-variant/10">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">ClimateTech</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Hardware</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Energy</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-lowest p-3 rounded-lg border border-primary/10">
+<div>
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Check Size</p>
+<p class="text-sm font-semibold text-on-surface">$2M – $10M</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Preferred Stage</p>
+<p class="text-sm font-semibold text-on-surface">Series A / B</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Investor Card 3 -->
+<div class="group bg-surface-container rounded-xl p-6 border border-outline-variant/5 hover:border-primary/30 transition-all relative overflow-hidden flex flex-col">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors cursor-pointer">bookmark_add</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center p-2 border border-outline-variant/10 overflow-hidden">
+<img alt="Impact Logo" class="w-full h-full object-contain" data-alt="Modern logo for a social impact venture firm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD7VBSBIrbscBW6lr9L15R09SaGC6HQUH4wX3IjBDGCKqjzH_2zhhqVas9OG3Js-WnUC8lby9_7-PlTPpWkuOYOF7t7JWY4xSSuqxnxS1Z-p5_dM259m-NQycSkN0hfTMxDu4jJBEbSoFl2SA_FejKSzP2qFYyWX0rLgd_DImBxK2KPIlQAoW4NZ9TfiHgZucma1QQTVgrVb831WLcJZRQ26TxHar9-9wa0ZStMklgfh4YqlgUxznoANN7YrKsPDirSg_plnFR3Is"/>
+</div>
+<div>
+<h3 class="text-xl font-headline font-bold text-on-surface">Blue Horizon</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">eco</span>
+<span class="text-xs text-on-surface-variant">Social Impact 50</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-1">Backing mission-driven fintech solutions that provide accessible financial instruments to emerging markets.</p>
+<div class="space-y-4 pt-4 border-t border-outline-variant/10">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Fintech</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Emerging Markets</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-3 rounded-lg">
+<div>
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Check Size</p>
+<p class="text-sm font-semibold text-on-surface">$100k – $1M</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Preferred Stage</p>
+<p class="text-sm font-semibold text-on-surface">Pre-Seed / Seed</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Investor Card 4 -->
+<div class="group bg-surface-container rounded-xl p-6 border border-outline-variant/5 hover:border-primary/30 transition-all relative overflow-hidden flex flex-col">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors cursor-pointer">bookmark_add</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center p-2 border border-outline-variant/10 overflow-hidden">
+<img alt="Global Fund Logo" class="w-full h-full object-contain" data-alt="Stylized skyline logo for a global real estate tech fund" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_CouY8FkhDm0t8mbOlak5CDKuMwRjwR0ek4ihlWZktERnWq0uWsWpertIt823JRMmbLxOAADDvMiSZnNGKmrt7QftUK278EVMrTGCTpdV8bRhDiXV_7FgmcukzZIeHvpaIydmJRwcyLMo2tSS9PoQdM-IrJtWpAEQmsLrb20tBR7XdnKAD4p2SeiaW7582Ba3GhW6tAkEq3m838xB-V0ouOXw7erZx9dXmBCJqDmBu7pcPjrzo53kfBonasi1UDpQVNqXByGLWLQ"/>
+</div>
+<div>
+<h3 class="text-xl font-headline font-bold text-on-surface">Titan Global</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">public</span>
+<span class="text-xs text-on-surface-variant">Global Partner</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-1">Large-scale institutional investments in late-stage mobility, urban tech, and prop-tech innovations.</p>
+<div class="space-y-4 pt-4 border-t border-outline-variant/10">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Mobility</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">PropTech</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Urban Tech</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-3 rounded-lg">
+<div>
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Check Size</p>
+<p class="text-sm font-semibold text-on-surface">$15M – $100M</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Preferred Stage</p>
+<p class="text-sm font-semibold text-on-surface">Series C+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Investor Card 5 -->
+<div class="group bg-surface-container rounded-xl p-6 border border-outline-variant/5 hover:border-primary/30 transition-all relative overflow-hidden flex flex-col">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors cursor-pointer">bookmark_add</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center p-2 border border-outline-variant/10 overflow-hidden">
+<img alt="Digital Logo" class="w-full h-full object-contain" data-alt="Futuristic circuit board logo for a deep tech VC" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY5qtYgnYEbYo1TRW00_PnoIcttCwIE6H_GNb7n5Yw-bu9tNYM0rFuLekYeCftszpF4T6GXlvyBTaIvpVH120kQj0LXWQnnXs2wUB2Ag0jJ-17hintXQ3yClmReu3GkKzFoccTbBqDH5Dbav9OzFnn33PCe_U758WIayS2i8VHOmrnzLk_NQ4-_mOhlMw2Ep2qsIrgkV40lx41vJbTSV0W9TZCYYa860dzmjIeus8plZKqke9xU7Y3RgmZiyaYeOoxWQQcQrt8kyY"/>
+</div>
+<div>
+<h3 class="text-xl font-headline font-bold text-on-surface">Quantum Leap</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">science</span>
+<span class="text-xs text-on-surface-variant">Scientific Core</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-1">Deep-tech specialist fund focusing on quantum computing, silicon photonics, and biotechnology research.</p>
+<div class="space-y-4 pt-4 border-t border-outline-variant/10">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Quantum</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">BioTech</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">DeepTech</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-3 rounded-lg">
+<div>
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Check Size</p>
+<p class="text-sm font-semibold text-on-surface">$3M – $7M</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Preferred Stage</p>
+<p class="text-sm font-semibold text-on-surface">Seed / Series A</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Investor Card 6 -->
+<div class="group bg-surface-container rounded-xl p-6 border border-outline-variant/5 hover:border-primary/30 transition-all relative overflow-hidden flex flex-col">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors cursor-pointer">bookmark_add</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center p-2 border border-outline-variant/10 overflow-hidden">
+<img alt="Angel Network Logo" class="w-full h-full object-contain" data-alt="Crest-like logo representing an elite angel network" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_pSvXAsL6SzV5AlvlrMYhWEWtCtnBi8V-6Z6JBUHv1fNb781nL-uoc9IL0BJ0NYfql84ODDa-a0X2Y852WYeVtLlMDBc7KwGBheAYzqL2go0x3z2q1DecCAGXXTdIFHhxBqQs5gZdJjkwLw7ckd8_UzhdBjnB1h8JGRTe7RDc9c4zCzoKhivuuns2x9gcJ71ju_53WJmBcHcaZ1WwmGzWWqAZFD48JBDCk6C_ExJ5ggPy3afMJWOa12ZJOIpYkhl2kXq9-qmzZ5g"/>
+</div>
+<div>
+<h3 class="text-xl font-headline font-bold text-on-surface">The Hive Network</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">groups</span>
+<span class="text-xs text-on-surface-variant">Angel Syndicate</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-1">A collaborative network of 200+ active angel investors backing early consumer and lifestyle tech founders.</p>
+<div class="space-y-4 pt-4 border-t border-outline-variant/10">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Consumer</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">DTC</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] font-bold uppercase tracking-wider text-on-surface">Web3</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-3 rounded-lg">
+<div>
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Check Size</p>
+<p class="text-sm font-semibold text-on-surface">$25k – $250k</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-primary tracking-tighter">Preferred Stage</p>
+<p class="text-sm font-semibold text-on-surface">Pre-Seed / Seed</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More / Pagination -->
+<div class="mt-12 flex justify-center">
+<button class="px-8 py-3 rounded-xl border border-outline-variant/20 bg-surface-container-low text-on-surface font-semibold text-sm flex items-center gap-2 hover:bg-surface-container-high transition-all">
+                        Load 12 more investors
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Right Insights Sidebar (Contextual) -->
+<aside class="w-80 bg-surface-container-lowest border-l border-outline-variant/10 p-6 hidden xl:flex flex-col gap-6">
+<div>
+<h4 class="text-sm font-bold text-on-surface mb-4">Market Sentiment</h4>
+<div class="bg-surface-container p-4 rounded-xl border border-outline-variant/10">
+<div class="flex justify-between items-center mb-4">
+<span class="text-xs text-on-surface-variant">SaaS Activity</span>
+<span class="text-xs font-bold text-tertiary">+12.4%</span>
+</div>
+<div class="h-10 flex items-end gap-1 px-1">
+<div class="flex-1 bg-surface-container-highest h-[40%] rounded-t-sm"></div>
+<div class="flex-1 bg-surface-container-highest h-[60%] rounded-t-sm"></div>
+<div class="flex-1 bg-surface-container-highest h-[45%] rounded-t-sm"></div>
+<div class="flex-1 bg-surface-container-highest h-[80%] rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary h-[90%] rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold text-on-surface mb-4">Trending Tags</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-xs text-on-surface-variant rounded-lg">#GenerativeAI</span>
+<span class="px-3 py-1 bg-surface-container text-xs text-on-surface-variant rounded-lg">#ZeroKnowledge</span>
+<span class="px-3 py-1 bg-surface-container text-xs text-on-surface-variant rounded-lg">#Fusion</span>
+<span class="px-3 py-1 bg-surface-container text-xs text-on-surface-variant rounded-lg">#CircularEconomy</span>
+</div>
+</div>
+<div class="mt-auto">
+<div class="p-5 rounded-2xl ai-gradient-bg relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="text-on-primary font-bold text-lg leading-tight mb-2">Pitch to 50+ VCs at once</h4>
+<p class="text-on-primary/80 text-xs mb-4 leading-relaxed">Our AI agent can tailor your deck and pitch to matching investors automatically.</p>
+<button class="w-full py-2 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-lg text-white text-xs font-bold transition-all">Start Campaign</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl text-white/10 rotate-12">auto_awesome</span>
+</div>
+</div>
+</aside>
+</div>
+</body></html>
