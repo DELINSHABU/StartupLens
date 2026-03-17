@@ -1,0 +1,252 @@
+[
+  {
+    "name": "NeuralFlow",
+    "description": "AI-powered neural network visualization platform for data scientists",
+    "industry": "AI/ML",
+    "stage": "Seed",
+    "pitch": "NeuralFlow provides real-time visualization and debugging tools for deep learning models. Our platform helps data scientists understand complex neural networks, identify bottlenecks, and optimize performance. We're targeting the $50B AI/ML tools market.",
+    "website": "https://neuralflow.ai",
+    "founderName": "Sarah Chen",
+    "founderId": "founder-001"
+  },
+  {
+    "name": "GreenCharge",
+    "description": "EV charging infrastructure network for urban areas",
+    "industry": "CleanTech",
+    "stage": "Series A",
+    "pitch": "GreenCharge is building the largest urban EV charging network in Southeast Asia. We've already installed 500+ charging stations across 50 cities and have partnerships with major mall operators and property developers.",
+    "website": "https://greencharge.io",
+    "founderName": "Marcus Wong",
+    "founderId": "founder-002"
+  },
+  {
+    "name": "MediSync",
+    "description": "Healthcare data synchronization platform for clinics",
+    "industry": "HealthTech",
+    "stage": "Seed",
+    "pitch": "MediSync connects fragmented healthcare systems, enabling seamless patient data sharing between clinics, labs, and hospitals. Our API integrates with 200+ EMR systems and reduces administrative overhead by 60%.",
+    "website": "https://medisync.health",
+    "founderName": "Dr. Priya Sharma",
+    "founderId": "founder-003"
+  },
+  {
+    "name": "CryptoVault",
+    "description": "Institutional-grade cryptocurrency custody solution",
+    "industry": "FinTech",
+    "stage": "Series A",
+    "pitch": "CryptoVault offers bank-grade security for institutional crypto holdings. We provide multi-signature cold storage, insurance coverage, and compliance reporting for hedge funds, family offices, and corporates.",
+    "website": "https://cryptovault.com",
+    "founderName": "James Liu",
+    "founderId": "founder-004"
+  },
+  {
+    "name": "EduVerse",
+    "description": "VR-based immersive learning platform for K-12 education",
+    "industry": "EdTech",
+    "stage": "Pre-Seed",
+    "pitch": "EduVerse creates virtual reality lessons that make learning interactive and fun. Students can explore ancient Rome, dissect virtual frogs, or walk inside a DNA strand. We're starting with science curriculum for grades 6-12.",
+    "website": "https://eduverse.vr",
+    "founderName": "Emily Torres",
+    "founderId": "founder-005"
+  },
+  {
+    "name": "DataMesh",
+    "description": "No-code data pipeline builder for mid-market companies",
+    "industry": "SaaS",
+    "stage": "Seed",
+    "pitch": "DataMesh lets non-technical users build complex data pipelines in minutes. Connect your CRM, marketing tools, and databases without writing a single line of code. No more waiting for engineering resources.",
+    "website": "https://datamesh.io",
+    "founderName": "Alex Rivera",
+    "founderId": "founder-006"
+  },
+  {
+    "name": "AgriSmart",
+    "description": "AI-powered crop monitoring for smallholder farmers",
+    "industry": "AgTech",
+    "stage": "Seed",
+    "pitch": "AgriSmart uses satellite imagery and AI to help smallholder farmers optimize yields. Our mobile app provides personalized recommendations for irrigation, fertilization, and pest control, increasing productivity by 30%.",
+    "website": "https://agrismart.farm",
+    "founderName": "Kofi Mensah",
+    "founderId": "founder-007"
+  },
+  {
+    "name": "SecureID",
+    "description": "Decentralized identity verification for remote hiring",
+    "industry": "Cybersecurity",
+    "stage": "Series A",
+    "pitch": "SecureID enables instant, privacy-preserving identity verification for remote hiring. Our blockchain-based solution reduces onboarding time from 5 days to 5 minutes while preventing 99% of identity fraud.",
+    "website": "https://secureid.io",
+    "founderName": "Nina Patel",
+    "founderId": "founder-008"
+  },
+  {
+    "name": "LogiBot",
+    "description": "Warehouse automation robots for e-commerce fulfillment",
+    "industry": "Robotics",
+    "stage": "Series A",
+    "pitch": "LogiBot deploys autonomous robots that can pick, pack, and sort packages in warehouses. Our robots work alongside human workers, increasing throughput by 3x while reducing error rates to near zero.",
+    "website": "https://logibot.ai",
+    "founderName": "David Kim",
+    "founderId": "founder-009"
+  },
+  {
+    "name": "MindfulAI",
+    "description": "AI mental health companion for corporate employees",
+    "industry": "HealthTech",
+    "stage": "Pre-Seed",
+    "pitch": "MindfulAI provides 24/7 emotional support through an AI chatbot trained by psychologists. Employees access it via Slack or Teams, getting immediate support for stress, anxiety, and work-related challenges.",
+    "website": "https://mindfulai.co",
+    "founderName": "Dr. Rachel Green",
+    "founderId": "founder-010"
+  },
+  {
+    "name": "RetailPulse",
+    "description": "Real-time retail foot traffic analytics",
+    "industry": "SaaS",
+    "stage": "Seed",
+    "pitch": "RetailPulse uses computer vision to analyze foot traffic in retail stores. Brick-and-mortar retailers use our analytics to optimize store layouts, staffing, and marketing campaigns based on actual customer behavior.",
+    "website": "https://retailpulse.io",
+    "founderName": "Tom Anderson",
+    "founderId": "founder-011"
+  },
+  {
+    "name": "SolarBreeze",
+    "description": "Solar-powered air conditioning for emerging markets",
+    "industry": "CleanTech",
+    "stage": "Series A",
+    "pitch": "SolarBreeze makes affordable, off-grid air conditioning units powered entirely by solar panels. Perfect for homes and small businesses in hot climates without reliable electricity. 70% cheaper than traditional AC units.",
+    "website": "https://solarbreeze.io",
+    "founderName": "Maria Santos",
+    "founderId": "founder-012"
+  },
+  {
+    "name": "ChainTrace",
+    "description": "Supply chain transparency using blockchain",
+    "industry": "Web3",
+    "stage": "Seed",
+    "pitch": "ChainTrace brings transparency to supply chains by tracking products from origin to consumer on blockchain. Consumers scan a QR code to see a product's entire journey, verifying authenticity and ethical sourcing.",
+    "website": "https://chaintrace.io",
+    "founderName": "Wei Zhang",
+    "founderId": "founder-013"
+  },
+  {
+    "name": "FinWiz",
+    "description": "AI financial advisor for millennials",
+    "industry": "FinTech",
+    "stage": "Seed",
+    "pitch": "FinWiz is like having a personal financial advisor in your pocket. Our AI analyzes spending patterns, suggests optimizations, and creates personalized investment portfolios. Targeting the 80M millennial market in the US.",
+    "website": "https://finwiz.app",
+    "founderName": "Jessica Brown",
+    "founderId": "founder-014"
+  },
+  {
+    "name": "DocuSign AI",
+    "description": "AI-powered contract analysis and negotiation",
+    "industry": "SaaS",
+    "stage": "Pre-Seed",
+    "pitch": "DocuSign AI uses natural language processing to analyze contracts in seconds, identifying risky clauses, suggesting improvements, and even negotiating on your behalf. Lawyers get 10x more productive.",
+    "website": "https://docusignai.com",
+    "founderName": "Michael Chang",
+    "founderId": "founder-015"
+  },
+  {
+    "name": "BioCure",
+    "description": "AI-accelerated drug discovery platform",
+    "industry": "HealthTech",
+    "stage": "Series A",
+    "pitch": "BioCure uses machine learning to predict how molecules will behave in the human body, dramatically speeding up drug discovery. Our platform has already helped identify 3 potential treatments for rare diseases.",
+    "website": "https://biocure.ai",
+    "founderName": "Dr. Anna Kowalski",
+    "founderId": "founder-016"
+  },
+  {
+    "name": "SkillForge",
+    "description": "Micro-learning platform for skilled trades",
+    "industry": "EdTech",
+    "stage": "Seed",
+    "pitch": "SkillForge offers short video courses for electricians, plumbers, and HVAC technicians to upskill quickly. Partnered with 50 trade schools and already have 100,000 active learners.",
+    "website": "https://skillforge.io",
+    "founderName": "Robert Johnson",
+    "founderId": "founder-017"
+  },
+  {
+    "name": "UrbanHarvest",
+    "description": "Vertical farming technology for urban areas",
+    "industry": "AgTech",
+    "stage": "Series A",
+    "pitch": "UrbanHarvest builds modular vertical farms that can be installed on rooftops and parking lots. Our hydroponic systems use 95% less water than traditional farming and produce pesticide-free vegetables year-round.",
+    "website": "https://urbanharvest.farm",
+    "founderName": "Lisa Park",
+    "founderId": "founder-018"
+  },
+  {
+    "name": "CloudArmor",
+    "description": "Cloud security posture management",
+    "industry": "Cybersecurity",
+    "stage": "Seed",
+    "pitch": "CloudArmor automatically finds and fixes security misconfigurations across AWS, Azure, and GCP. Our continuous monitoring prevents data breaches before they happen, saving companies millions in potential damages.",
+    "website": "https://cloudarmor.io",
+    "founderName": "Chris Martinez",
+    "founderId": "founder-019"
+  },
+  {
+    "name": "FitVerse",
+    "description": "Gamified fitness metaverse with NFT rewards",
+    "industry": "Web3",
+    "stage": "Pre-Seed",
+    "pitch": "FitVerse combines exercise with gaming and crypto rewards. Users earn NFTs for completing workouts, which can be traded or used to unlock premium features. 500K waitlist signups in just 2 months.",
+    "website": "https://fitverse.io",
+    "founderName": "Jake Williams",
+    "founderId": "founder-020"
+  },
+  {
+    "name": "SmartKitchen",
+    "description": "AI-powered commercial kitchen management",
+    "industry": "SaaS",
+    "stage": "Seed",
+    "pitch": "SmartKitchen helps restaurants reduce food waste by predicting demand and optimizing inventory. Our AI analyzes weather, events, and historical data to recommend daily orders, reducing waste by 40%.",
+    "website": "https://smartkitchen.app",
+    "founderName": "Maria Garcia",
+    "founderId": "founder-021"
+  },
+  {
+    "name": "TeleDent",
+    "description": "Teledentistry platform for rural areas",
+    "industry": "HealthTech",
+    "stage": "Pre-Seed",
+    "pitch": "TeleDent connects rural patients with dentists via video consultations. AI-assisted oral health assessments help identify issues early, and we partner with mobile dental clinics for in-person follow-ups.",
+    "website": "https://teledent.io",
+    "founderName": "Dr. Susan Lee",
+    "founderId": "founder-022"
+  },
+  {
+    "name": "RentEase",
+    "description": "Property management platform for landlords",
+    "industry": "FinTech",
+    "stage": "Seed",
+    "pitch": "RentEase automates everything for landlords - from listing units and screening tenants to collecting rent and handling maintenance requests. Currently managing 10,000+ rental units across the US.",
+    "website": "https://rentease.app",
+    "founderName": "Daniel Wright",
+    "founderId": "founder-023"
+  },
+  {
+    "name": "NanoBots",
+    "description": "Nanotechnology for targeted drug delivery",
+    "industry": "DeepTech",
+    "stage": "Series A",
+    "pitch": "NanoBots develops microscopic robots that can deliver drugs directly to diseased cells, minimizing side effects. Our lead candidate is in preclinical trials for treating pancreatic cancer.",
+    "website": "https://nanobots.tech",
+    "founderName": "Dr. Yuki Tanaka",
+    "founderId": "founder-024"
+  },
+  {
+    "name": "CareerPath",
+    "description": "AI career coaching platform",
+    "industry": "EdTech",
+    "stage": "Seed",
+    "pitch": "CareerPath uses AI to analyze your skills, experience, and goals to create personalized career roadmaps. Includes mock interviews, resume reviews, and salary negotiation coaching. 90% of users land interviews within 60 days.",
+    "website": "https://careerpath.ai",
+    "founderName": "Amanda Clark",
+    "founderId": "founder-025"
+  }
+]

@@ -4,6 +4,7 @@ import { Bell, Settings, Search, LogIn, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/context/AuthContext";
+import { AIStatusBar } from "@/components/AIStatusBar";
 
 export function TopNav() {
   const { user, signIn, logOut } = useAuth();
@@ -19,6 +20,7 @@ export function TopNav() {
         />
       </div>
       <div className="flex items-center gap-4">
+        <AIStatusBar />
         <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#191f31] transition-colors relative">
           <Bell className="w-5 h-5 text-[#c2c6d9]" />
           <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-[#ffb4ab] rounded-full" />

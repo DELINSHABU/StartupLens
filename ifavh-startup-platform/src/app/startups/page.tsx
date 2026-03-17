@@ -1,7 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Plus, Pencil, Trash2, Rocket, Globe, User, Layers, Briefcase } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import {
+  Plus,
+  Pencil,
+  Trash2,
+  Rocket,
+  Globe,
+  User,
+  Layers,
+  Briefcase,
+  ArrowLeftRight,
+  Check,
+} from "lucide-react";
 import { PageTransition, FadeIn, StaggerContainer, StaggerItem } from "@/components/motion-primitives";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -55,6 +67,7 @@ const emptyForm = {
 };
 
 export default function StartupsPage() {
+  const router = useRouter();
   const { user } = useAuth();
   const [startups, setStartups] = useState<Startup[]>([]);
   const [open, setOpen] = useState(false);
@@ -62,18 +75,48 @@ export default function StartupsPage() {
   const [form, setForm] = useState(emptyForm);
   const [filterIndustry, setFilterIndustry] = useState("All");
   const [viewing, setViewing] = useState<Startup | null>(null);
+  const [selectedStartupIds, setSelectedStartupIds] = useState<string[]>([]);
+  const [selectionError, setSelectionError] = useState("");
 
-  useEffect(() => {
-    loadStartups();
-  }, []);
 
-  async function loadStartups() {
+  const loadStartups = useCallback(async () => {
     try {
       const data = await getStartups();
       setStartups(data);
+      setSelectedStartupIds((prev) =>
+        prev.filter((id) => data.some((startup) => startup.id === id))
+      );
     } catch {
       // Firebase not configured yet
     }
+  }, []);
+
+  useEffect(() => {
+    queueMicrotask(() => {
+      void loadStartups();
+    });
+  }, [loadStartups]);
+
+  function toggleStartupSelection(startupId: string) {
+    setSelectionError("");
+    setSelectedStartupIds((prev) => {
+      if (prev.includes(startupId)) {
+        return prev.filter((id) => id !== startupId);
+      }
+      if (prev.length >= 3) {
+        setSelectionError("You can compare up to 3 startups at a time.");
+        return prev;
+      }
+      return [...prev, startupId];
+    });
+  }
+
+  function handleCompareSelected() {
+    if (selectedStartupIds.length < 2) {
+      setSelectionError("Select at least 2 startups to compare.");
+      return;
+    }
+    router.push(`/startups/compare?ids=${selectedStartupIds.join(",")}`);
   }
 
   async function handleSubmit() {
@@ -127,127 +170,142 @@ export default function StartupsPage() {
             Discover and manage the next generation of high-growth ventures.
           </p>
         </div>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
+        <div className="flex flex-col items-end gap-2">
+          <div className="flex gap-3">
             <Button
-              onClick={() => {
-                setEditing(null);
-                setForm(emptyForm);
-              }}
-              className="bg-gradient-to-r from-[#0062ff] to-[#b4c5ff] text-white"
+              onClick={handleCompareSelected}
+              disabled={selectedStartupIds.length < 2}
+              className="bg-[#191f31] border border-[#424656]/20 text-[#dce1fb] hover:bg-[#2e3447]"
             >
-              <Plus className="mr-2 h-4 w-4" /> Add Startup
+              <ArrowLeftRight className="mr-2 h-4 w-4" />
+              Compare ({selectedStartupIds.length})
             </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-lg bg-[#191f31] border-[#424656]/20 text-[#dce1fb]">
-            <DialogHeader>
-              <DialogTitle className="text-[#dce1fb]">
-                {editing ? "Edit Startup" : "Add New Startup"}
-              </DialogTitle>
-              <p className="text-xs text-[#c2c6d9] uppercase tracking-wider">
-                Ecosystem Expansion
-              </p>
-            </DialogHeader>
-            <div className="space-y-4 mt-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
-                    Startup Name
-                  </Label>
-                  <Input
-                    value={form.name}
-                    onChange={(e) =>
-                      setForm({ ...form, name: e.target.value })
-                    }
-                    placeholder="e.g. Acme AI"
-                    className="bg-[#070d1f] border-[#424656]/20 text-[#dce1fb] mt-1"
-                  />
-                </div>
-                <div>
-                  <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
-                    Founder Name
-                  </Label>
-                  <Input
-                    value={user?.displayName || ""}
-                    disabled
-                    className="bg-[#070d1f] border-[#424656]/20 text-[#c2c6d9] mt-1"
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
-                    Industry
-                  </Label>
-                  <Select
-                    value={form.industry}
-                    onValueChange={(v) => setForm({ ...form, industry: v })}
-                  >
-                    <SelectTrigger className="bg-[#070d1f] border-[#424656]/20 text-[#dce1fb] mt-1">
-                      <SelectValue placeholder="Select Industry" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-[#191f31] border-[#424656]/20">
-                      {INDUSTRIES.map((i) => (
-                        <SelectItem key={i} value={i}>
-                          {i}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
-                    Funding Stage
-                  </Label>
-                  <Select
-                    value={form.stage}
-                    onValueChange={(v) => setForm({ ...form, stage: v })}
-                  >
-                    <SelectTrigger className="bg-[#070d1f] border-[#424656]/20 text-[#dce1fb] mt-1">
-                      <SelectValue placeholder="Select Stage" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-[#191f31] border-[#424656]/20">
-                      {STAGES.map((s) => (
-                        <SelectItem key={s} value={s}>
-                          {s}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div>
-                <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
-                  Short Pitch
-                </Label>
-                <Textarea
-                  value={form.pitch}
-                  onChange={(e) =>
-                    setForm({ ...form, pitch: e.target.value })
-                  }
-                  placeholder="Tell us what makes this startup unique..."
-                  rows={4}
-                  className="bg-[#070d1f] border-[#424656]/20 text-[#dce1fb] mt-1"
-                />
-              </div>
-              <div className="flex gap-3 pt-2">
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
                 <Button
-                  variant="ghost"
-                  onClick={() => setOpen(false)}
-                  className="flex-1 text-[#c2c6d9]"
+                  onClick={() => {
+                    setEditing(null);
+                    setForm(emptyForm);
+                  }}
+                  className="bg-gradient-to-r from-[#0062ff] to-[#b4c5ff] text-white"
                 >
-                  Cancel
+                  <Plus className="mr-2 h-4 w-4" /> Add Startup
                 </Button>
-                <Button
-                  onClick={handleSubmit}
-                  className="flex-1 bg-gradient-to-r from-[#0062ff] to-[#b4c5ff] text-white"
-                >
-                  {editing ? "Update Startup" : "Register Startup"}
-                </Button>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
+              </DialogTrigger>
+              <DialogContent className="max-w-lg bg-[#191f31] border-[#424656]/20 text-[#dce1fb]">
+                <DialogHeader>
+                  <DialogTitle className="text-[#dce1fb]">
+                    {editing ? "Edit Startup" : "Add New Startup"}
+                  </DialogTitle>
+                  <p className="text-xs text-[#c2c6d9] uppercase tracking-wider">
+                    Ecosystem Expansion
+                  </p>
+                </DialogHeader>
+                <div className="space-y-4 mt-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
+                        Startup Name
+                      </Label>
+                      <Input
+                        value={form.name}
+                        onChange={(e) =>
+                          setForm({ ...form, name: e.target.value })
+                        }
+                        placeholder="e.g. Acme AI"
+                        className="bg-[#070d1f] border-[#424656]/20 text-[#dce1fb] mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
+                        Founder Name
+                      </Label>
+                      <Input
+                        value={user?.displayName || ""}
+                        disabled
+                        className="bg-[#070d1f] border-[#424656]/20 text-[#c2c6d9] mt-1"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
+                        Industry
+                      </Label>
+                      <Select
+                        value={form.industry}
+                        onValueChange={(v) => setForm({ ...form, industry: v })}
+                      >
+                        <SelectTrigger className="bg-[#070d1f] border-[#424656]/20 text-[#dce1fb] mt-1">
+                          <SelectValue placeholder="Select Industry" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[#191f31] border-[#424656]/20">
+                          {INDUSTRIES.map((i) => (
+                            <SelectItem key={i} value={i}>
+                              {i}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
+                        Funding Stage
+                      </Label>
+                      <Select
+                        value={form.stage}
+                        onValueChange={(v) => setForm({ ...form, stage: v })}
+                      >
+                        <SelectTrigger className="bg-[#070d1f] border-[#424656]/20 text-[#dce1fb] mt-1">
+                          <SelectValue placeholder="Select Stage" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[#191f31] border-[#424656]/20">
+                          {STAGES.map((s) => (
+                            <SelectItem key={s} value={s}>
+                              {s}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  <div>
+                    <Label className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
+                      Short Pitch
+                    </Label>
+                    <Textarea
+                      value={form.pitch}
+                      onChange={(e) =>
+                        setForm({ ...form, pitch: e.target.value })
+                      }
+                      placeholder="Tell us what makes this startup unique..."
+                      rows={4}
+                      className="bg-[#070d1f] border-[#424656]/20 text-[#dce1fb] mt-1"
+                    />
+                  </div>
+                  <div className="flex gap-3 pt-2">
+                    <Button
+                      variant="ghost"
+                      onClick={() => setOpen(false)}
+                      className="flex-1 text-[#c2c6d9]"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={handleSubmit}
+                      className="flex-1 bg-gradient-to-r from-[#0062ff] to-[#b4c5ff] text-white"
+                    >
+                      {editing ? "Update Startup" : "Register Startup"}
+                    </Button>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+          <p className="text-[10px] text-[#c2c6d9] uppercase tracking-widest">
+            Select 2-3 startups, then compare
+          </p>
+        </div>
       </FadeIn>
 
       {/* Filter Tags */}
@@ -266,6 +324,17 @@ export default function StartupsPage() {
           </button>
         ))}
       </div>
+      {(selectionError || selectedStartupIds.length > 0) && (
+        <div
+          className={`mb-6 p-3 rounded-lg text-xs border ${
+            selectionError
+              ? "bg-[#ffb4ab]/10 border-[#ffb4ab]/30 text-[#ffb4ab]"
+              : "bg-[#151b2d] border-[#424656]/20 text-[#c2c6d9]"
+          }`}
+        >
+          {selectionError || `${selectedStartupIds.length} startup(s) selected for comparison.`}
+        </div>
+      )}
 
       {/* Startup Cards Grid */}
       {filtered.length === 0 ? (
@@ -299,7 +368,27 @@ export default function StartupsPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div
+                  className="flex gap-1"
+                >
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleStartupSelection(startup.id);
+                    }}
+                    className={`p-1.5 rounded border transition-colors ${
+                      selectedStartupIds.includes(startup.id)
+                        ? "bg-[#0062ff]/20 border-[#b4c5ff]/30 text-[#b4c5ff]"
+                        : "border-[#424656]/30 text-[#c2c6d9] hover:bg-[#2e3447]"
+                    }`}
+                    aria-label="Toggle compare selection"
+                  >
+                    {selectedStartupIds.includes(startup.id) ? (
+                      <Check className="w-3.5 h-3.5" />
+                    ) : (
+                      <ArrowLeftRight className="w-3.5 h-3.5" />
+                    )}
+                  </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); handleEdit(startup); }}
                     className="p-1.5 rounded hover:bg-[#2e3447]"

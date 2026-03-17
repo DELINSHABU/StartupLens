@@ -2,7 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, pitch } = await req.json();
+    const { startupName, pitch } = await req.json();
+
+    if (!pitch?.trim()) {
+      return NextResponse.json(
+        { error: "Pitch is required" },
+        { status: 400 }
+      );
+    }
 
     const apiKey = process.env.NVIDIA_API_KEY;
     if (!apiKey) {
@@ -26,47 +33,35 @@ export async function POST(req: NextRequest) {
             {
               role: "system",
               content:
-                "You are an expert startup evaluator and venture capital analyst. Always respond with valid JSON only, no markdown.",
+                "You are an expert startup pitch coach for early-stage founders. Always respond with valid JSON only, no markdown.",
             },
             {
               role: "user",
-              content: `Analyze this startup and return a JSON response with this EXACT structure (no markdown, just raw JSON):
+              content: `Evaluate this startup pitch and return JSON only (no markdown) with this exact shape:
 {
-  "overallScore": <number 0-100>,
-  "scores": {
-    "marketFit": <number 0-100>,
-    "solutionDepth": <number 0-100>,
-    "uniqueness": <number 0-100>,
-    "viability": <number 0-100>
-  },
-  "verdict": "<one sentence verdict>",
+  "clarityScore": <number 0-100>,
+  "persuasivenessScore": <number 0-100>,
   "strengths": ["<strength1>", "<strength2>", "<strength3>"],
-  "weaknesses": ["<weakness1>", "<weakness2>"],
-  "suggestions": ["<suggestion1>", "<suggestion2>"],
-  "investorInterest": "<High|Medium|Low>",
-  "investorReason": "<short reason for investor interest level>",
-  "confidence": <number 80-100>,
-  "insights": {
-    "marketSentiment": "<short market insight>",
-    "competitorDensity": "<short competitor insight>",
-    "recentExits": "<short exit multiple insight>",
-    "redFlags": "<any red flags or 'None detected'>"
-  }
+  "issues": ["<issue1>", "<issue2>", "<issue3>"],
+  "suggestedRewrite": "<clear and persuasive rewritten pitch (120-220 words)>",
+  "shortVersion": "<1-2 sentence concise version>",
+  "investorHook": "<one compelling opening sentence>",
+  "nextSteps": ["<specific improvement 1>", "<specific improvement 2>", "<specific improvement 3>"]
 }
 
-Startup Name: ${name}
+Startup Name: ${startupName || "Unnamed Startup"}
 Pitch: ${pitch}`,
             },
           ],
-          temperature: 0.7,
-          max_tokens: 1024,
+          temperature: 0.6,
+          max_tokens: 1400,
         }),
       }
     );
 
     if (!response.ok) {
       const err = await response.text();
-      console.error("NVIDIA API error:", err);
+      console.error("NVIDIA API error (pitch coach):", err);
       return NextResponse.json(
         { error: `NVIDIA API ${response.status}: ${err}` },
         { status: response.status }
@@ -74,7 +69,14 @@ Pitch: ${pitch}`,
     }
 
     const data = await response.json();
-    const text = data.choices[0].message.content;
+    const text = data.choices?.[0]?.message?.content;
+    if (!text) {
+      return NextResponse.json(
+        { error: "No response content from NVIDIA model" },
+        { status: 500 }
+      );
+    }
+
     const cleaned = text
       .replace(/```json\n?/g, "")
       .replace(/```\n?/g, "")
@@ -82,10 +84,11 @@ Pitch: ${pitch}`,
     const parsed = JSON.parse(cleaned);
 
     return NextResponse.json(parsed);
-  } catch (error: any) {
-    console.error("AI evaluation error:", error?.message || error);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Pitch coaching failed";
+    console.error("AI pitch coach error:", message);
     return NextResponse.json(
-      { error: error?.message || "Evaluation failed" },
+      { error: message },
       { status: 500 }
     );
   }

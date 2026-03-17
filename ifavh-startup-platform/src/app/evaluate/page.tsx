@@ -12,13 +12,45 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { PageTransition, FadeIn } from "@/components/motion-primitives";
-import { Badge } from "@/components/ui/badge";
+import { evaluateStartup, coachPitch } from "@/lib/gemini";
+
+type ActiveTool = "evaluate" | "coach";
+
+interface EvaluateResult {
+  overallScore: number;
+  scores: Record<string, number>;
+  verdict: string;
+  strengths: string[];
+  suggestions: string[];
+  investorInterest: string;
+  investorReason: string;
+  confidence: number;
+  insights?: {
+    marketSentiment?: string;
+    competitorDensity?: string;
+    recentExits?: string;
+    redFlags?: string;
+  };
+}
+
+interface PitchCoachResult {
+  clarityScore: number;
+  persuasivenessScore: number;
+  strengths: string[];
+  issues: string[];
+  suggestedRewrite: string;
+  shortVersion: string;
+  investorHook: string;
+  nextSteps: string[];
+}
 
 export default function EvaluatePage() {
   const [name, setName] = useState("");
   const [pitch, setPitch] = useState("");
+  const [activeTool, setActiveTool] = useState<ActiveTool>("evaluate");
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<EvaluateResult | null>(null);
+  const [coachResult, setCoachResult] = useState<PitchCoachResult | null>(null);
   const [error, setError] = useState("");
 
   async function handleEvaluate() {
@@ -26,16 +58,27 @@ export default function EvaluatePage() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("/api/evaluate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name || "Unnamed Startup", pitch }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Evaluation failed");
-      setResult(data);
-    } catch (err: any) {
-      setError(err.message || "Evaluation failed. Check your Gemini API key.");
+      if (activeTool === "evaluate") {
+        const data = (await evaluateStartup(
+          name || "Unnamed Startup",
+          pitch
+        )) as EvaluateResult;
+        setResult(data);
+        setCoachResult(null);
+      } else {
+        const data = (await coachPitch(
+          name || "Unnamed Startup",
+          pitch
+        )) as PitchCoachResult;
+        setCoachResult(data);
+        setResult(null);
+      }
+    } catch (err: unknown) {
+      const fallbackMessage =
+        activeTool === "evaluate"
+          ? "Evaluation failed. Check your NVIDIA_API_KEY."
+          : "Pitch coaching failed. Check your NVIDIA_API_KEY.";
+      setError(err instanceof Error ? err.message : fallbackMessage);
       console.error(err);
     }
     setLoading(false);
@@ -55,6 +98,11 @@ export default function EvaluatePage() {
     return "bg-[#ffb4ab]";
   };
 
+  const isEvaluateMode = activeTool === "evaluate";
+  const hasResult = isEvaluateMode ? Boolean(result) : Boolean(coachResult);
+  const clarityScore = Number(coachResult?.clarityScore ?? 0);
+  const persuasivenessScore = Number(coachResult?.persuasivenessScore ?? 0);
+
   return (
     <PageTransition className="p-8 space-y-8 max-w-7xl mx-auto w-full">
       {/* Header */}
@@ -68,10 +116,12 @@ export default function EvaluatePage() {
           </h2>
         </div>
         <h1 className="text-4xl font-extrabold tracking-tight text-[#dce1fb]">
-          AI Startup Evaluator
+          {isEvaluateMode ? "AI Startup Evaluator" : "AI Pitch Coach"}
         </h1>
         <p className="text-[#c2c6d9] max-w-2xl text-lg">
-          Harness AI market analysis to objectively stress-test your business model.
+          {isEvaluateMode
+            ? "Harness AI market analysis to objectively stress-test your business model."
+            : "Get founder-focused feedback on clarity, persuasiveness, and a stronger rewrite for your pitch."}
         </p>
       </FadeIn>
 
@@ -82,6 +132,36 @@ export default function EvaluatePage() {
           <div className="bg-[#151b2d] p-8 rounded-xl border border-[#424656]/10 relative overflow-hidden group">
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#b4c5ff]/5 rounded-full blur-3xl transition-all group-hover:bg-[#b4c5ff]/10" />
             <div className="relative space-y-6">
+              <div className="bg-[#070d1f] p-1 rounded-lg border border-[#424656]/20 grid grid-cols-2 gap-1">
+                <button
+                  onClick={() => {
+                    setActiveTool("evaluate");
+                    setError("");
+                  }}
+                  className={`flex items-center justify-center gap-2 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-colors ${
+                    isEvaluateMode
+                      ? "bg-[#0062ff] text-white"
+                      : "text-[#c2c6d9] hover:bg-[#2e3447]"
+                  }`}
+                >
+                  <Brain className="w-3.5 h-3.5" />
+                  Evaluator
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveTool("coach");
+                    setError("");
+                  }}
+                  className={`flex items-center justify-center gap-2 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-colors ${
+                    !isEvaluateMode
+                      ? "bg-[#0062ff] text-white"
+                      : "text-[#c2c6d9] hover:bg-[#2e3447]"
+                  }`}
+                >
+                  <Lightbulb className="w-3.5 h-3.5" />
+                  Pitch Coach
+                </button>
+              </div>
               <div className="space-y-2">
                 <label className="text-xs text-[#c2c6d9] tracking-widest uppercase">
                   Startup Name
@@ -95,17 +175,23 @@ export default function EvaluatePage() {
               </div>
               <div className="space-y-2">
                 <label className="text-xs text-[#c2c6d9] tracking-widest uppercase">
-                  Pitch Description
+                  {isEvaluateMode ? "Pitch Description" : "Pitch To Coach"}
                 </label>
                 <textarea
                   className="w-full bg-[#070d1f] border border-[#424656]/20 rounded-lg p-4 focus:ring-2 focus:ring-[#b4c5ff]/20 focus:border-[#b4c5ff] outline-none text-[#dce1fb] transition-all placeholder:text-[#c2c6d9]/30 resize-none"
-                  placeholder="Detail your value proposition, target market, and technical advantage..."
+                  placeholder={
+                    isEvaluateMode
+                      ? "Detail your value proposition, target market, and technical advantage..."
+                      : "Paste your current pitch. Include problem, solution, traction, and why now..."
+                  }
                   rows={8}
                   value={pitch}
                   onChange={(e) => setPitch(e.target.value)}
                 />
                 <div className="flex justify-between items-center text-[10px] text-[#c2c6d9]/50 uppercase tracking-widest">
-                  <span>Recommended: 200+ words</span>
+                  <span>
+                    {isEvaluateMode ? "Recommended: 200+ words" : "Recommended: 120+ words"}
+                  </span>
                   <span>{pitch.length} / 2000 characters</span>
                 </div>
               </div>
@@ -117,9 +203,15 @@ export default function EvaluatePage() {
                 {loading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
                 ) : (
-                  <Brain className="w-5 h-5" />
+                  <>{isEvaluateMode ? <Brain className="w-5 h-5" /> : <Lightbulb className="w-5 h-5" />}</>
                 )}
-                {loading ? "Analyzing..." : "Run Deep Analysis"}
+                {loading
+                  ? isEvaluateMode
+                    ? "Analyzing..."
+                    : "Coaching..."
+                  : isEvaluateMode
+                  ? "Run Deep Analysis"
+                  : "Coach My Pitch"}
               </button>
             </div>
           </div>
@@ -132,14 +224,22 @@ export default function EvaluatePage() {
 
         {/* Right: Results */}
         <section className="lg:col-span-7 space-y-6">
-          {!result && !loading && (
+          {!hasResult && !loading && (
             <div className="bg-[#191f31] p-12 rounded-2xl border border-[#424656]/10 text-center">
-              <Brain className="w-16 h-16 mx-auto mb-4 text-[#424656]" />
+              {isEvaluateMode ? (
+                <Brain className="w-16 h-16 mx-auto mb-4 text-[#424656]" />
+              ) : (
+                <Lightbulb className="w-16 h-16 mx-auto mb-4 text-[#424656]" />
+              )}
               <p className="text-[#c2c6d9] text-lg font-medium">
-                Enter a pitch to get AI analysis
+                {isEvaluateMode
+                  ? "Enter a pitch to get AI analysis"
+                  : "Enter a pitch to get AI coaching"}
               </p>
               <p className="text-xs text-[#424656] mt-2">
-                Results will appear here with scores, strengths, and suggestions
+                {isEvaluateMode
+                  ? "Results will appear here with scores, strengths, and suggestions"
+                  : "Feedback will appear here with clarity, persuasiveness, and rewrites"}
               </p>
             </div>
           )}
@@ -148,15 +248,19 @@ export default function EvaluatePage() {
             <div className="bg-[#191f31] p-12 rounded-2xl border border-[#b4c5ff]/10 text-center">
               <Loader2 className="w-12 h-12 mx-auto mb-4 text-[#b4c5ff] animate-spin" />
               <p className="text-[#dce1fb] text-lg font-medium">
-                Analyzing with Gemini AI...
+                {isEvaluateMode
+                  ? "Analyzing with Gemini AI..."
+                  : "Coaching with NVIDIA AI..."}
               </p>
               <p className="text-xs text-[#c2c6d9] mt-2">
-                Evaluating market fit, solution depth, uniqueness, and viability
+                {isEvaluateMode
+                  ? "Evaluating market fit, solution depth, uniqueness, and viability"
+                  : "Scoring clarity, improving persuasion, and rewriting your pitch"}
               </p>
             </div>
           )}
 
-          {result && (
+          {isEvaluateMode && result && (
             <>
               {/* Analysis Report Card */}
               <div className="bg-[#191f31] p-8 rounded-2xl border border-[#b4c5ff]/10 relative overflow-hidden">
@@ -218,28 +322,26 @@ export default function EvaluatePage() {
                       Core Performance
                     </h4>
                     <div className="space-y-5">
-                      {Object.entries(result.scores).map(
-                        ([key, value]: [string, any]) => (
+                      {Object.entries(result.scores).map(([key, value]) => (
                           <div key={key} className="space-y-2">
                             <div className="flex justify-between text-xs font-medium">
                               <span className="capitalize">
                                 {key.replace(/([A-Z])/g, " $1").trim()}
                               </span>
-                              <span className={scoreColor(value)}>
+                              <span className={scoreColor(Number(value))}>
                                 {value}%
                               </span>
                             </div>
                             <div className="h-1.5 w-full bg-[#2e3447] rounded-full overflow-hidden">
                               <div
                                 className={`h-full rounded-full transition-all ${barColor(
-                                  value
+                                  Number(value)
                                 )}`}
                                 style={{ width: `${value}%` }}
                               />
                             </div>
                           </div>
-                        )
-                      )}
+                        ))}
                     </div>
                   </div>
 
@@ -360,6 +462,134 @@ export default function EvaluatePage() {
                     {result.insights?.redFlags || "None detected"}
                   </p>
                 </div>
+              </div>
+            </>
+          )}
+
+          {!isEvaluateMode && coachResult && (
+            <>
+              <div className="bg-[#191f31] p-8 rounded-2xl border border-[#b4c5ff]/10 relative overflow-hidden space-y-6">
+                <div className="space-y-1">
+                  <h3 className="text-2xl font-bold text-[#dce1fb]">
+                    Pitch Coach Report:{" "}
+                    <span className="text-[#b4c5ff]">{name || "Startup"}</span>
+                  </h3>
+                  <p className="text-sm text-[#c2c6d9]">Coached just now</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-[#151b2d] p-5 rounded-xl border border-[#424656]/10 space-y-2">
+                    <p className="text-[10px] tracking-widest uppercase text-[#c2c6d9]/60">
+                      Clarity Score
+                    </p>
+                    <p className={`text-3xl font-black ${scoreColor(clarityScore)}`}>
+                      {clarityScore}%
+                    </p>
+                    <div className="h-1.5 w-full bg-[#2e3447] rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full transition-all ${barColor(clarityScore)}`}
+                        style={{ width: `${clarityScore}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="bg-[#151b2d] p-5 rounded-xl border border-[#424656]/10 space-y-2">
+                    <p className="text-[10px] tracking-widest uppercase text-[#c2c6d9]/60">
+                      Persuasiveness Score
+                    </p>
+                    <p className={`text-3xl font-black ${scoreColor(persuasivenessScore)}`}>
+                      {persuasivenessScore}%
+                    </p>
+                    <div className="h-1.5 w-full bg-[#2e3447] rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full transition-all ${barColor(persuasivenessScore)}`}
+                        style={{ width: `${persuasivenessScore}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-[#151b2d] p-5 rounded-xl border border-[#424656]/10">
+                    <h4 className="text-xs font-bold uppercase tracking-wider mb-3 text-[#b4c5ff]">
+                      Strengths
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {(Array.isArray(coachResult.strengths) ? coachResult.strengths : []).map(
+                        (item: string, i: number) => (
+                          <span
+                            key={i}
+                            className="px-3 py-1 rounded-full bg-[#0062ff]/10 border border-[#b4c5ff]/20 text-[11px] font-medium text-[#b4c5ff]"
+                          >
+                            {item}
+                          </span>
+                        )
+                      )}
+                    </div>
+                  </div>
+                  <div className="bg-[#151b2d] p-5 rounded-xl border border-[#424656]/10">
+                    <h4 className="text-xs font-bold uppercase tracking-wider mb-3 text-[#ffb4ab]">
+                      Issues To Fix
+                    </h4>
+                    <ul className="space-y-2 text-xs text-[#c2c6d9]">
+                      {(Array.isArray(coachResult.issues) ? coachResult.issues : []).map(
+                        (item: string, i: number) => (
+                          <li key={i} className="flex gap-2">
+                            <span className="text-[#ffb4ab] font-bold">•</span>
+                            {item}
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-[#0062ff] p-5 rounded-xl">
+                    <h4 className="text-xs font-bold text-white/80 uppercase tracking-wider mb-2">
+                      Investor Hook
+                    </h4>
+                    <p className="text-sm text-white">
+                      {coachResult.investorHook || "N/A"}
+                    </p>
+                  </div>
+                  <div className="bg-[#151b2d] p-5 rounded-xl border border-[#424656]/10">
+                    <h4 className="text-xs font-bold uppercase tracking-wider mb-2 text-[#7bd0ff]">
+                      Short Version
+                    </h4>
+                    <p className="text-sm text-[#c2c6d9]">
+                      {coachResult.shortVersion || "N/A"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-[#151b2d] p-6 rounded-xl border border-[#424656]/10 space-y-4">
+                <div className="flex items-center gap-2">
+                  <Lightbulb className="w-4 h-4 text-[#7bd0ff]" />
+                  <h4 className="text-xs font-bold uppercase tracking-wider">
+                    Suggested Rewrite
+                  </h4>
+                </div>
+                <p className="text-sm text-[#dce1fb] leading-relaxed whitespace-pre-wrap">
+                  {coachResult.suggestedRewrite || "No rewrite generated."}
+                </p>
+              </div>
+
+              <div className="bg-[#070d1f] p-6 rounded-xl border border-[#424656]/10">
+                <h4 className="text-xs font-bold uppercase tracking-wider mb-3 text-[#b4c5ff]">
+                  Next Steps
+                </h4>
+                <ul className="space-y-2 text-sm text-[#c2c6d9]">
+                  {(Array.isArray(coachResult.nextSteps) ? coachResult.nextSteps : []).map(
+                    (item: string, i: number) => (
+                      <li key={i} className="flex gap-2">
+                        <span className="text-[#7bd0ff] font-bold">•</span>
+                        {item}
+                      </li>
+                    )
+                  )}
+                </ul>
               </div>
             </>
           )}

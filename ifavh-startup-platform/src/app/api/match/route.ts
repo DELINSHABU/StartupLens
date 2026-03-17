@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, pitch } = await req.json();
+    const { startup, investors } = await req.json();
 
     const apiKey = process.env.NVIDIA_API_KEY;
     if (!apiKey) {
@@ -26,36 +26,23 @@ export async function POST(req: NextRequest) {
             {
               role: "system",
               content:
-                "You are an expert startup evaluator and venture capital analyst. Always respond with valid JSON only, no markdown.",
+                "You are a startup-investor matching expert. Always respond with valid JSON only, no markdown.",
             },
             {
               role: "user",
-              content: `Analyze this startup and return a JSON response with this EXACT structure (no markdown, just raw JSON):
+              content: `Given a startup profile and a list of investors, rank the best investor matches. Return JSON only (no markdown):
 {
-  "overallScore": <number 0-100>,
-  "scores": {
-    "marketFit": <number 0-100>,
-    "solutionDepth": <number 0-100>,
-    "uniqueness": <number 0-100>,
-    "viability": <number 0-100>
-  },
-  "verdict": "<one sentence verdict>",
-  "strengths": ["<strength1>", "<strength2>", "<strength3>"],
-  "weaknesses": ["<weakness1>", "<weakness2>"],
-  "suggestions": ["<suggestion1>", "<suggestion2>"],
-  "investorInterest": "<High|Medium|Low>",
-  "investorReason": "<short reason for investor interest level>",
-  "confidence": <number 80-100>,
-  "insights": {
-    "marketSentiment": "<short market insight>",
-    "competitorDensity": "<short competitor insight>",
-    "recentExits": "<short exit multiple insight>",
-    "redFlags": "<any red flags or 'None detected'>"
-  }
+  "matches": [
+    {
+      "investorName": "<name>",
+      "matchScore": <number 0-100>,
+      "reason": "<why this is a good match>"
+    }
+  ]
 }
 
-Startup Name: ${name}
-Pitch: ${pitch}`,
+Startup: ${startup}
+Investors: ${investors}`,
             },
           ],
           temperature: 0.7,
@@ -83,9 +70,9 @@ Pitch: ${pitch}`,
 
     return NextResponse.json(parsed);
   } catch (error: any) {
-    console.error("AI evaluation error:", error?.message || error);
+    console.error("AI match error:", error?.message || error);
     return NextResponse.json(
-      { error: error?.message || "Evaluation failed" },
+      { error: error?.message || "Matching failed" },
       { status: 500 }
     );
   }

@@ -178,7 +178,7 @@ export default function EventsPage() {
                   </div>
                   <h3 className="font-bold text-[#dce1fb]">{event.title}</h3>
                 </div>
-                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex gap-1">
                   <button onClick={() => handleEdit(event)} className="p-1.5 rounded hover:bg-[#2e3447]">
                     <Pencil className="w-3.5 h-3.5 text-[#c2c6d9]" />
                   </button>
